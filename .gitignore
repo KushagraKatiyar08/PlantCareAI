@@ -1,0 +1,30 @@
+# Virtual environments
+.venv/
+env/
+venv/
+
+# Environment and sensitive keys
+.env
+.streamlit/secrets.toml
+
+# Python cache & Profiling
+__pycache__/
+*.py[cod]
+*$py.class
+*.pytest_cache/
+*.prof
+
+# Large datasets & local training caches (sample test leaves are in assets/samples)
+datasets/
+dataset_audit/
+evaluation_results_baseline/
+evaluation_results_finetuned/
+
+# SQLite databases & temp files
+plantcare.db
+*.db-journal
+*.tmp
+
+# Uploads cache & build artifacts
+uploads/
+.vercel/

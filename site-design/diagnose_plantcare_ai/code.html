@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="web_standard" name="shell-type"/>
+<title>PlantCare AI — Autonomous Crop Intelligence Platform</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface-container-lowest": "#0a0a0a",
+            "surface-container-low": "#111111",
+            "surface-container": "#191919",
+            "surface-container-high": "#202020",
+            "surface-container-highest": "#282828",
+            "canvas-card": "#191919",
+            "canvas-soft": "#141414",
+            "canvas-mid": "#212327",
+            "hairline": "#212327",
+            "outline": "#8e9192",
+            "outline-variant": "#34383c",
+            "primary": "#ffffff",
+            "on-primary": "#0a0a0a",
+            "secondary": "#c3c7cd",
+            "on-surface": "#ffffff",
+            "on-surface-variant": "#9ca3af",
+            "body": "#dadbdf",
+            "accent-emerald": "#34d399",
+            "accent-breeze": "#a0c3ec",
+            "accent-sunset": "#ff7a17",
+            "accent-sunset-soft": "#ffc285",
+            "accent-dusk": "#7c3aed"
+          },
+          borderRadius: {
+            "card": "8px",
+            "DEFAULT": "8px",
+            "full": "9999px"
+          },
+          fontFamily: {
+            "sans": ["Inter", "system-ui", "-apple-system", "sans-serif"],
+            "mono": ["JetBrains Mono", "SFMono-Regular", "Menlo", "monospace"]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    @layer base {
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: #0a0a0a !important;
+        color: #ffffff !important;
+      }
+      * {
+        box-shadow: none !important;
+      }
+    }
+    ::-webkit-scrollbar { display: none; }
+    @keyframes scan-line {
+      0% { top: 0%; opacity: 0.9; }
+      50% { opacity: 1; }
+      100% { top: 100%; opacity: 0.9; }
+    }
+    .animate-scan {
+      animation: scan-line 3s linear infinite;
+    }
+  </style>
+</head>
+<body class="bg-[#0a0a0a] text-white font-sans antialiased selection:bg-white selection:text-[#0a0a0a] min-h-screen flex flex-col">
+<!-- Header -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/95 backdrop-blur-md border-b border-[#212327]">
+<div class="h-16 w-full px-6 flex items-center justify-between gap-4 max-w-[1600px] mx-auto">
+<!-- Brand Logo -->
+<div class="flex items-center gap-3 shrink-0">
+<span class="text-white text-[15px] select-none">✦</span>
+<div class="flex flex-col">
+<span class="text-[13px] font-medium tracking-wide text-white uppercase">PlantCare AI</span>
+<span class="font-mono text-[9px] uppercase tracking-[0.2em] text-[#8e9192] leading-tight">AUTONOMOUS VISION INTELLIGENCE</span>
+</div>
+</div>
+<!-- Centered Pill Navigation Segmented Control -->
+<nav class="hidden lg:flex items-center bg-[#141414] border border-[#212327] rounded-full p-1 gap-1">
+<a aria-current="page" class="px-4 py-1.5 rounded-full text-[13px] font-medium bg-white text-[#0a0a0a] transition-all" data-path="diagnose" href="#">Diagnose</a>
+<a class="px-4 py-1.5 rounded-full text-[13px] text-[#9ca3af] hover:text-white transition-colors" data-path="prediction-history" href="#">Prediction History</a>
+<a class="px-4 py-1.5 rounded-full text-[13px] text-[#9ca3af] hover:text-white transition-colors" data-path="disease-library" href="#">Disease Library</a>
+<a class="px-4 py-1.5 rounded-full text-[13px] text-[#9ca3af] hover:text-white transition-colors" data-path="model-and-benchmarks" href="#">Model &amp; Benchmarks</a>
+<a class="px-4 py-1.5 rounded-full text-[13px] text-[#9ca3af] hover:text-white transition-colors" data-path="admin-telemetry" href="#">Admin Telemetry</a>
+</nav>
+<!-- Right Edge Node Status & Avatar -->
+<div class="flex items-center gap-3 shrink-0">
+<div class="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-[#141414] border border-[#212327] font-mono text-[11px] text-[#9ca3af]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#34d399] animate-pulse"></span>
+<span>NODE: US-WEST-04 // 18MS</span>
+</div>
+<div class="w-8 h-8 rounded-full bg-white flex items-center justify-center shrink-0 text-[#0a0a0a]">
+<span class="material-symbols-outlined text-[18px]">person</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Container -->
+<main class="w-full pt-16 bg-[#0a0a0a] flex-grow">
+<div class="w-full max-w-[1600px] mx-auto px-6 py-8 flex flex-col gap-8">
+<!-- Hero & Section Eyebrow -->
+<div class="flex flex-col gap-6 border-b border-[#212327] pb-8 pt-2">
+<div class="flex flex-wrap items-center justify-between gap-3">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-[#141414] border border-[#212327] rounded-full">
+<span class="w-1.5 h-1.5 rounded-full bg-[#34d399] animate-pulse"></span>
+<span class="font-mono text-[10px] text-[#9ca3af] uppercase tracking-widest">
+              PLANT HEALTH // AUTONOMOUS VISION PIPELINE // DEPLOYMENT: INFERENCE-CLUSTER-09
+            </span>
+</div>
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-[#141414] border border-[#212327] rounded-full font-mono text-[10px] text-[#34d399]">
+<span class="material-symbols-outlined text-[14px]">memory</span>
+<span>SYSTEM READY // MOBILENET-V2 INT8 ACTIVE</span>
+</div>
+</div>
+<div class="max-w-4xl flex flex-col gap-3">
+<h1 class="text-[52px] sm:text-[64px] lg:text-[72px] leading-[1.05] tracking-[-1.8px] font-normal text-white">
+            Empirical plant pathology at edge scale.
+          </h1>
+<p class="text-[15px] leading-relaxed text-[#9ca3af] max-w-3xl font-normal">
+            Real-time convolutional inference over high-resolution foliage specimens with Bayesian out-of-distribution guardrails. Calibrated specifically for smallholder field pathology and autonomous drone sweeps.
+          </p>
+</div>
+<div class="flex flex-wrap items-center gap-3 pt-1">
+<button class="inline-flex items-center gap-2 bg-white text-[#0a0a0a] font-medium text-[13px] px-6 py-2 rounded-full hover:bg-neutral-200 active:scale-[0.98] transition-all cursor-pointer" id="triggerScanBtn">
+<span class="text-xs">✦</span>
+<span>Analyze a leaf</span>
+</button>
+<button class="inline-flex items-center gap-2 bg-transparent border border-[#212327] text-white text-[13px] px-6 py-2 rounded-full hover:border-[#8e9192] hover:bg-[#141414] transition-all cursor-pointer">
+<span class="material-symbols-outlined text-[16px] text-[#9ca3af]">dataset</span>
+<span>View Dataset Specs (PlantDoc)</span>
+</button>
+<div class="hidden sm:inline-flex items-center gap-2 text-[#8e9192] font-mono text-[11px] pl-3">
+<span>MODEL ID: MD-22989-E9 // LATENCY 18MS TARGET</span>
+</div>
+</div>
+</div>
+<!-- KPI Telemetry Row (4 Flat Dark Cards) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- KPI 1 -->
+<div class="bg-[#191919] border border-[#212327] rounded-[8px] p-5 flex flex-col justify-between gap-4">
+<div class="flex items-center justify-between border-b border-[#212327] pb-2">
+<span class="font-mono uppercase tracking-[0.14em] text-[#8e9192] text-[11px]">Total Analyses Logged</span>
+<span class="font-mono text-[#34d399] text-[11px]">+12.4% THIS CYCLE</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="text-[36px] leading-[42px] tracking-[-1.2px] text-white font-normal">142,891</div>
+<div class="font-mono text-[#9ca3af] text-[11px]">TELEMETRY PIPELINE SYNCED</div>
+</div>
+</div>
+<!-- KPI 2 -->
+<div class="bg-[#191919] border border-[#212327] rounded-[8px] p-5 flex flex-col justify-between gap-4">
+<div class="flex items-center justify-between border-b border-[#212327] pb-2">
+<span class="font-mono uppercase tracking-[0.14em] text-[#8e9192] text-[11px]">Distinct Taxonomy Classes</span>
+<span class="font-mono text-[#a0c3ec] text-[11px]">38 LABELED NODES</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="text-[36px] leading-[42px] tracking-[-1.2px] text-white font-normal">38</div>
+<div class="font-mono text-[#9ca3af] text-[11px]">14 COMMODITY CROPS MAPPED</div>
+</div>
+</div>
+<!-- KPI 3 -->
+<div class="bg-[#191919] border border-[#212327] rounded-[8px] p-5 flex flex-col justify-between gap-4">
+<div class="flex items-center justify-between border-b border-[#212327] pb-2">
+<span class="font-mono uppercase tracking-[0.14em] text-[#8e9192] text-[11px]">Mean Inference Score</span>
+<span class="font-mono text-[#34d399] text-[11px]">CALIBRATED</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="text-[36px] leading-[42px] tracking-[-1.2px] text-white font-normal">98.42%</div>
+<div class="font-mono text-[#9ca3af] text-[11px]">BAYESIAN COV &lt; 0.018</div>
+</div>
+</div>
+<!-- KPI 4 -->
+<div class="bg-[#191919] border border-[#212327] rounded-[8px] p-5 flex flex-col justify-between gap-4">
+<div class="flex items-center justify-between border-b border-[#212327] pb-2">
+<span class="font-mono uppercase tracking-[0.14em] text-[#8e9192] text-[11px]">Recent Telemetry Activity</span>
+<span class="font-mono text-[#9ca3af] text-[11px]">NPU CORES 8/8</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="text-[36px] leading-[42px] tracking-[-1.2px] text-white font-normal">18ms</div>
+<div class="font-mono text-[#9ca3af] text-[11px]">US-WEST-04 ON-DEVICE NPU</div>
+</div>
+</div>
+</div>
+<!-- Two-Column Diagnostic Workspace -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Left Column: Specimen Ingestion & Tensor Validation -->
+<div class="lg:col-span-6 flex flex-col gap-4">
+<div class="bg-[#191919] border border-[#212327] rounded-[8px] p-6 flex flex-col gap-5">
+<!-- Card Header -->
+<div class="flex items-center justify-between border-b border-[#212327] pb-4">
+<span class="font-mono uppercase tracking-[0.14em] text-[#8e9192] text-[11px]">
+                01 // SPECIMEN INGESTION &amp; TENSOR VALIDATION
+              </span>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#141414] border border-[#212327] font-mono text-[10px] text-[#34d399] uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-[#34d399]"></span>
+<span>INSPECTOR READY</span>
+</div>
+</div>
+<!-- Specimen Selector Control -->
+<div class="flex flex-col gap-1.5">
+<label class="font-mono text-[#8e9192] uppercase tracking-wider text-[11px]">Active Specimen Select</label>
+<div class="relative w-full">
+<select class="w-full appearance-none bg-[#0a0a0a] border border-[#212327] rounded-[8px] px-3.5 py-2 text-[13px] text-white focus:outline-none focus:border-white transition-colors cursor-pointer pr-10">
+<option selected="" value="potato_01">Potato (Solanum tuberosum) — Specimen #PLT-8821-A</option>
+<option value="tomato_04">Tomato (Solanum lycopersicum) — Specimen #PLT-7704-D</option>
+<option value="apple_09">Apple (Malus domestica) — Specimen #PLT-3129-C</option>
+<option value="corn_12">Corn (Zea mays) — Specimen #PLT-9920-K</option>
+<option value="grape_03">Grape (Vitis vinifera) — Specimen #PLT-1102-G</option>
+</select>
+<span class="material-symbols-outlined pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#8e9192] text-[18px]">
+                  expand_more
+                </span>
+</div>
+</div>
+<!-- Drag and Drop Zone -->
+<div class="w-full border border-dashed border-[#34383c] hover:border-white/50 bg-[#0a0a0a] rounded-[8px] p-5 flex flex-col items-center justify-center text-center gap-2 transition-colors cursor-pointer group">
+<div class="w-10 h-10 rounded-full bg-[#141414] border border-[#212327] flex items-center justify-center group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-white text-[20px]">cloud_upload</span>
+</div>
+<div class="flex flex-col gap-0.5">
+<span class="text-[13px] text-white font-medium">Drop leaf specimen or click to browse</span>
+<span class="font-mono text-[#8e9192] text-[11px]">JPEG, PNG UP TO 16MB // TENSOR 512x512 AUTO-CONV</span>
+</div>
+</div>
+<!-- Reticle Viewfinder Area -->
+<div class="relative w-full aspect-[4/3] bg-[#0a0a0a] border border-[#212327] rounded-[8px] overflow-hidden flex items-center justify-center">
+<!-- Leaf Specimen Image -->
+<img class="w-full h-full object-cover select-none" data-alt="Close-up macro clinical photography of a single green potato Solanum tuberosum leaf showing distinct concentric necrotic brown fungal lesions and chlorotic yellow halos of Alternaria solani early blight. High-resolution pathology studio lighting, scientific black background, scientific specimen view." src="https://lh3.googleusercontent.com/aida-public/AB6AXuChgT5qTWt3Z9qpcXMlmVxJIkHf5MKo2SFnJ7pk6af9NMBWGhui0PPtk_idog2pI176v5n2jIIi3b6jC80H5ACugFmZXg5VO0MA03TgiBi7pWw2UXJx5gVaNJmy0WN3IvJK8mYd_9UyW-pouGFGwTC_BB5iuaVxL8BXGhNQdWAWaaGULcd9UwXmamj_r0ho4LKY0tT1JKSowzMFdpwkMWj-SyQ9U7W1FzFaBqrJKb9h"/>
+<!-- Scan Laser Animation Overlay -->
+<div class="absolute inset-0 pointer-events-none overflow-hidden">
+<div class="w-full h-[2px] bg-[#ff7a17] absolute left-0 animate-scan"></div>
+<!-- Crosshairs -->
+<div class="absolute inset-0 grid grid-cols-3 grid-rows-3 opacity-25 pointer-events-none">
+<div class="border-r border-b border-[#212327]"></div>
+<div class="border-r border-b border-[#212327]"></div>
+<div class="border-b border-[#212327]"></div>
+<div class="border-r border-b border-[#212327]"></div>
+<div class="border-r border-b border-[#212327]"></div>
+<div class="border-b border-[#212327]"></div>
+<div class="border-r border-b border-[#212327]"></div>
+<div class="border-r border-b border-[#212327]"></div>
+<div></div>
+</div>
+</div>
+<!-- Target Bounding Box Reticle -->
+<div class="absolute top-[28%] left-[32%] w-[42%] h-[46%] border border-[#ff7a17] bg-[#ff7a17]/10 pointer-events-none flex flex-col justify-between p-1.5">
+<div class="flex items-center justify-between">
+<span class="font-mono text-[9px] text-[#ff7a17] bg-[#0a0a0a]/90 px-1 py-0.5 rounded-[4px]">
+                    [TARGET_ROI: 0.94 CONFIDENCE]
+                  </span>
+<span class="w-1.5 h-1.5 bg-[#ff7a17]"></span>
+</div>
+<div class="flex items-end justify-between font-mono text-[9px] text-[#ff7a17]">
+<span>X: 164.2 Y: 112.8</span>
+<span>AREA: 420PX²</span>
+</div>
+</div>
+<!-- Corner Watermarks -->
+<div class="absolute top-2 left-2 font-mono text-[9px] text-[#8e9192] bg-[#0a0a0a]/60 px-1.5 py-0.5 rounded">
+                CAM_OPT_01 // 512x512 RESCALED
+              </div>
+<div class="absolute bottom-2 right-2 font-mono text-[9px] text-[#34d399] flex items-center gap-1 bg-[#0a0a0a]/60 px-1.5 py-0.5 rounded">
+<span class="w-1.5 h-1.5 rounded-full bg-[#34d399]"></span>
+<span>FOCUS LOCK</span>
+</div>
+</div>
+<!-- File Validation Micro-Table -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-[#0a0a0a] border border-[#212327] p-3 rounded-[8px]">
+<div class="flex flex-col">
+<span class="font-mono text-[#8e9192] text-[10px] uppercase">Magic Bytes</span>
+<span class="font-mono text-white text-[11px]">FF D8 FF E0</span>
+</div>
+<div class="flex flex-col">
+<span class="font-mono text-[#8e9192] text-[10px] uppercase">MIME Type</span>
+<span class="font-mono text-white text-[11px]">IMAGE/JPEG</span>
+</div>
+<div class="flex flex-col">
+<span class="font-mono text-[#8e9192] text-[10px] uppercase">Resolution</span>
+<span class="font-mono text-white text-[11px]">3024 x 4032 PX</span>
+</div>
+<div class="flex flex-col">
+<span class="font-mono text-[#8e9192] text-[10px] uppercase">Sharpness</span>
+<span class="font-mono text-[#34d399] text-[11px]">94.2 (PASS)</span>
+</div>
+</div>
+<!-- Ingestion Action Trigger -->
+<button class="w-full bg-white text-[#0a0a0a] font-medium text-[13px] py-2.5 rounded-full flex items-center justify-center gap-2 hover:bg-neutral-200 active:scale-[0.99] transition-all cursor-pointer" id="runInferenceAction">
+<span class="text-xs">✦</span>
+<span>Analyze Leaf</span>
+</button>
+</div>
+</div>
+<!-- Right Column: Live Inference Result & Remediation -->
+<div class="lg:col-span-6 flex flex-col gap-4">
+<div class="bg-[#191919] border border-[#212327] rounded-[8px] p-6 flex flex-col gap-5">
+<!-- Card Header -->
+<div class="flex items-center justify-between border-b border-[#212327] pb-4">
+<span class="font-mono uppercase tracking-[0.14em] text-[#8e9192] text-[11px]">
+                02 // LIVE INFERENCE RESULT
+              </span>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#141414] border border-[#212327] font-mono text-[10px] text-[#9ca3af] uppercase">
+<span>MOBILENET-V2-PLANTDOC-FT</span>
+</div>
+</div>
+<!-- Main Diagnostic Headline -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-mono text-[#ff7a17] text-[11px] uppercase tracking-wider">
+                  PATHOLOGY CONFIRMED (CLASS ID: #08)
+                </span>
+<span class="font-mono text-[#8e9192] text-[10px]">TIMESTAMP: 2025-05-18T14:22:01Z</span>
+</div>
+<h2 class="text-[32px] sm:text-[36px] font-normal text-white tracking-tight leading-tight">
+                Potato: Early Blight
+              </h2>
+<div class="text-[14px] text-[#c3c7cd] italic">
+                Alternaria solani // Fungal Phytopathogen
+              </div>
+</div>
+<!-- Confidence Badges Row -->
+<div class="flex flex-wrap items-center gap-2">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#141414] border border-[#212327] font-mono text-[11px] text-[#a0c3ec]">
+<span class="material-symbols-outlined text-[14px]">query_stats</span>
+<span>98.42% Inference Score</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#141414] border border-[#212327] font-mono text-[11px] text-[#34d399]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#34d399]"></span>
+<span>Guardrail: Passed</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#141414] border border-[#212327] font-mono text-[11px] text-[#9ca3af]">
+<span>SEPARATION MARGIN: +34.6%</span>
+</div>
+</div>
+<!-- Softmax Probability Bars (Sunset to Dusk Gradient) -->
+<div class="flex flex-col gap-3 bg-[#0a0a0a] border border-[#212327] p-4 rounded-[8px]">
+<div class="flex items-center justify-between border-b border-[#212327] pb-2">
+<span class="font-mono text-[#8e9192] uppercase text-[10px] tracking-wider">
+                  TOP-3 SOFTMAX DISTRIBUTION PROBABILITIES
+                </span>
+<span class="font-mono text-[#8e9192] text-[10px]">INT8 DEQUANT</span>
+</div>
+<!-- Class 1 -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-center font-mono text-[11px]">
+<span class="text-white">1. Alternaria solani (Early Blight)</span>
+<span class="text-[#ff7a17] font-medium">98.42%</span>
+</div>
+<div class="w-full h-1.5 bg-[#141414] rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-[#ff7a17] to-[#7c3aed] rounded-full" style="width: 98.42%;"></div>
+</div>
+</div>
+<!-- Class 2 -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-center font-mono text-[11px]">
+<span class="text-[#9ca3af]">2. Phytophthora infestans (Late Blight)</span>
+<span class="text-[#8e9192]">1.18%</span>
+</div>
+<div class="w-full h-1.5 bg-[#141414] rounded-full overflow-hidden">
+<div class="h-full bg-[#444748] rounded-full" style="width: 1.18%;"></div>
+</div>
+</div>
+<!-- Class 3 -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-center font-mono text-[11px]">
+<span class="text-[#9ca3af]">3. Septoria lycopersici (Septoria Leaf Spot)</span>
+<span class="text-[#8e9192]">0.40%</span>
+</div>
+<div class="w-full h-1.5 bg-[#141414] rounded-full overflow-hidden">
+<div class="h-full bg-[#444748] rounded-full" style="width: 0.40%;"></div>
+</div>
+</div>
+</div>
+<!-- Clinical Pathology Summary -->
+<div class="flex flex-col gap-1 border-l-2 border-[#ff7a17] pl-3 py-1 bg-[#141414] rounded-r-[8px]">
+<span class="font-mono uppercase tracking-wider text-[#ff7a17] text-[10px]">
+                CLINICAL PATHOLOGY SUMMARY
+              </span>
+<p class="text-[13px] leading-relaxed text-[#9ca3af]">
+                Target-board concentric rings formed by Alternaria solani conidiophores observed in lower canopy foliage. Necrotic expansion is circumscribed by a prominent yellow chlorotic halo caused by alternaric acid phytotoxin secretion. Guardrail verification detects 0% out-of-distribution drift.
+              </p>
+</div>
+<!-- Agronomic Remediation Action Plan -->
+<div class="flex flex-col gap-3 bg-[#0a0a0a] border border-[#212327] p-4 rounded-[8px]">
+<div class="flex items-center justify-between border-b border-[#212327] pb-2">
+<span class="font-mono text-white uppercase text-[11px] tracking-wider">
+                  AGRONOMIC REMEDIATION ACTION PLAN // PROTOCOL T-1
+                </span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#ff7a17]/10 border border-[#ff7a17]/30 font-mono text-[#ff7a17] text-[10px]">
+                  IMMEDIATE INTERVENTION
+                </span>
+</div>
+<ul class="flex flex-col gap-2 pt-1 text-[13px] text-[#dadbdf]">
+<li class="flex items-start gap-2">
+<span class="text-[#ff7a17] select-none text-[12px] mt-[2px]">✦</span>
+<span><strong class="text-white font-normal">Foliar Excision:</strong> Systematically prune and destroy heavily infected lower leaflets. Do not compost residue due to persistent saprophytic conidia overwintering.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="text-[#ff7a17] select-none text-[12px] mt-[2px]">✦</span>
+<span><strong class="text-white font-normal">Biological Control Spray:</strong> Apply bio-fungicide suspension (Bacillus subtilis strain QST 713) or copper octanoate at 7-day intervals until canopy emergence stabilizes.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="text-[#ff7a17] select-none text-[12px] mt-[2px]">✦</span>
+<span><strong class="text-white font-normal">Irrigation Restructure:</strong> Shift immediately from overhead pivot irrigation to subsurface micro-drip delivery to reduce leaf wetness duration below critical fungal spore germination threshold (&lt;4 hours).</span>
+</li>
+</ul>
+</div>
+<!-- Action Pill Buttons -->
+<div class="flex flex-wrap items-center gap-3 pt-1">
+<button class="inline-flex items-center gap-2 bg-transparent border border-white/60 text-white text-[13px] px-5 py-2 rounded-full hover:border-white hover:bg-[#141414] transition-all cursor-pointer">
+<span class="material-symbols-outlined text-[16px] text-[#9ca3af]">download</span>
+<span>Download Diagnostic Report (PDF)</span>
+</button>
+<button class="inline-flex items-center gap-2 bg-transparent border border-[#212327] text-[#9ca3af] hover:text-white text-[13px] px-5 py-2 rounded-full hover:border-[#8e9192] transition-all cursor-pointer">
+<span class="material-symbols-outlined text-[16px]">database</span>
+<span>Log to Multi-Tenant DB</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Cluster Diagnostics Sub-Strip -->
+<div class="w-full bg-[#141414] border border-[#212327] rounded-[8px] p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#8e9192] text-[20px]">hub</span>
+<div class="flex flex-col">
+<span class="text-[13px] text-white font-medium">Inference Worker Shard #09 (T4 Tensor Core)</span>
+<span class="font-mono text-[#9ca3af] text-[11px]">RUNNING WEIGHT COMPRESSION // QUANTIZED TENSORRT PIPELINE // 0 MEMORY LEAKS</span>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-4 font-mono text-[11px] text-[#8e9192]">
+<span>BATCH SIZE: 1</span>
+<span>WARM LATENCY: 14.8MS</span>
+<span class="text-[#34d399]">CALIBRATION EPSILON: 0.002</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-[#212327] bg-[#0a0a0a]">
+<div class="w-full max-w-[1600px] mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+<div class="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
+<span class="font-mono uppercase tracking-[0.14em] text-[#8e9192] text-[11px]">
+          © 2025 PLANTCARE AI // EMPIRICAL PLANT PATHOLOGY AT EDGE SCALE
+        </span>
+<span class="hidden sm:inline font-mono text-[#212327]">/</span>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#141414] border border-[#212327] font-mono text-[#9ca3af] text-[10px] uppercase">
+<span>ISO/IEC 22989 COMPLIANT</span>
+</div>
+</div>
+<div class="flex items-center gap-6 font-mono text-[11px] uppercase tracking-[0.12em] text-[#9ca3af]">
+<a class="hover:text-white transition-colors" data-path="diagnose" href="#">Inference</a>
+<a class="hover:text-white transition-colors" data-path="disease-library" href="#">38-Class Taxonomy</a>
+<a class="hover:text-white transition-colors" data-path="model-and-benchmarks" href="#">INT8 Quant</a>
+<a class="hover:text-white transition-colors" data-path="admin-telemetry" href="#">Cluster Synapses</a>
+</div>
+</div>
+</footer>
+<script>
+    // Micro-interaction: Trigger feedback on Leaf Analysis
+    const runBtn = document.getElementById('runInferenceAction');
+    const triggerBtn = document.getElementById('triggerScanBtn');
+
+    function simulateInference(btn) {
+      if (!btn) return;
+      const originalText = btn.innerHTML;
+      btn.innerHTML = `<span class="material-symbols-outlined text-[16px] animate-spin">refresh</span><span>Computing Tensor...</span>`;
+      btn.style.opacity = '0.7';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        btn.innerHTML = `<span class="material-symbols-outlined text-[16px] text-[#34d399]">check_circle</span><span>Inference Complete (18ms)</span>`;
+        btn.style.opacity = '1';
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+        }, 1800);
+      }, 600);
+    }
+
+    if (runBtn) runBtn.addEventListener('click', () => simulateInference(runBtn));
+    if (triggerBtn) triggerBtn.addEventListener('click', () => simulateInference(triggerBtn));
+  </script>
+</body></html>

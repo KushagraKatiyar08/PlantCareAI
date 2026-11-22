@@ -1,0 +1,42 @@
+PLANTCARE AI — BASELINE VS FINE-TUNED MODEL
+============================================================
+Images evaluated in both runs: 105
+Baseline result rows: 105
+Candidate result rows: 105
+
+Metric                       Baseline    Candidate   Change (pp)
+----------------------------------------------------------------
+Top-1 accuracy                 25.71%       43.81%       +18.10
+Top-3 accuracy                 52.38%       71.43%       +19.05
+Macro precision                32.80%       50.82%       +18.02
+Macro recall                   27.86%       43.08%       +15.22
+Macro F1-score                 26.23%       42.90%       +16.67
+
+PER-CATEGORY TOP-1 RESULTS
+----------------------------------------------------------------
+Category                            Base  Candidate  Change (pp)     N
+Corn Gray leaf spot               66.67%     33.33%      -33.33     3
+Corn leaf blight                  33.33%     44.44%      +11.11     9
+Corn rust leaf                    10.00%     90.00%      +80.00    10
+Potato leaf early blight          33.33%     16.67%      -16.67     6
+Potato leaf late blight            0.00%     20.00%      +20.00     5
+Squash Powdery mildew leaf        33.33%     83.33%      +50.00     6
+Tomato Early blight leaf          33.33%     44.44%      +11.11     9
+Tomato Septoria leaf spot         10.00%     50.00%      +40.00    10
+Tomato leaf bacterial spot         0.00%     12.50%      +12.50     8
+Tomato leaf late blight           60.00%     30.00%      -30.00    10
+Tomato leaf mosaic virus           0.00%     10.00%      +10.00    10
+Tomato leaf yellow virus          60.00%     60.00%       +0.00     5
+Tomato mold leaf                   0.00%     33.33%      +33.33     6
+grape leaf black rot              50.00%     75.00%      +25.00     8
+
+INTERPRETATION CHECK
+----------------------------------------------------------------
+Categories improved: 10
+Categories unchanged: 1
+Categories declined: 3
+Net change in correct Top-1 predictions: +19 images
+
+Use this comparison as an experiment result, not proof of general field accuracy.
+The benchmark has only the selected mapped categories and 105 images at most.
+Verify the category labels before claiming disease-specific diagnostic performance.

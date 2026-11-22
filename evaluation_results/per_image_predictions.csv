@@ -1,0 +1,106 @@
+﻿category_folder,image,actual_label,predicted_label,top1_score_percent,top3_correct
+Corn Gray leaf spot,rsz0803Figure6.jpg,Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot,Corn_(maize)___Northern_Leaf_Blight,99.14,True
+Corn Gray leaf spot,"show_picture.asp_id=aaaaaaaaaaogcqq&w2=420&h2=378&clip=center,420,378&meta=0.jpg",Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot,Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot,99.28,True
+Corn Gray leaf spot,strom5.jpg,Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot,Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot,98.54,True
+Corn leaf blight,02c.jpg,Corn_(maize)___Northern_Leaf_Blight,Corn_(maize)___Northern_Leaf_Blight,87.31,True
+Corn leaf blight,0796.20graylssymt.jpg,Corn_(maize)___Northern_Leaf_Blight,Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot,99.57,True
+Corn leaf blight,07c.jpg,Corn_(maize)___Northern_Leaf_Blight,Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot,99.64,True
+Corn leaf blight,0c.jpg,Corn_(maize)___Northern_Leaf_Blight,Corn_(maize)___Northern_Leaf_Blight,99.88,True
+Corn leaf blight,1321189.jpg,Corn_(maize)___Northern_Leaf_Blight,Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot,99.66,True
+Corn leaf blight,160314_web.jpg,Corn_(maize)___Northern_Leaf_Blight,Corn_(maize)___Northern_Leaf_Blight,99.72,True
+Corn leaf blight,Common%20Diseases%20Figure%201.JPG.jpg,Corn_(maize)___Northern_Leaf_Blight,Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot,92.37,True
+Corn leaf blight,corn-disease-update-fig-3-gray-leaf-spot.jpg,Corn_(maize)___Northern_Leaf_Blight,Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot,99.81,True
+Corn leaf blight,Corn-SCLB-2017-1.jpg,Corn_(maize)___Northern_Leaf_Blight,Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot,48.81,True
+Corn rust leaf,0796.39maizerust.jpg,Corn_(maize)___Common_rust_,Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot,78.53,True
+Corn rust leaf,0796.40comrust.jpg,Corn_(maize)___Common_rust_,Corn_(maize)___Northern_Leaf_Blight,78.65,False
+Corn rust leaf,0796.47southrust.jpg,Corn_(maize)___Common_rust_,Corn_(maize)___Common_rust_,97.75,True
+Corn rust leaf,0796.52srusttelia.jpg,Corn_(maize)___Common_rust_,Corn_(maize)___Northern_Leaf_Blight,96.95,True
+Corn rust leaf,12-19striprustJIM.jpg,Corn_(maize)___Common_rust_,Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot,93.72,True
+Corn rust leaf,1355.50commonrust.jpg,Corn_(maize)___Common_rust_,Corn_(maize)___Northern_Leaf_Blight,70.47,False
+Corn rust leaf,2256-body-1501555581-1.jpg,Corn_(maize)___Common_rust_,Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot,56.13,False
+Corn rust leaf,393.jpg,Corn_(maize)___Common_rust_,Corn_(maize)___Northern_Leaf_Blight,84.58,True
+Corn rust leaf,5496239405_d95bdb97d1_z.jpg,Corn_(maize)___Common_rust_,Corn_(maize)___Northern_Leaf_Blight,75.3,True
+Corn rust leaf,80104747.jpg,Corn_(maize)___Common_rust_,Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot,75.95,True
+grape leaf black rot,03gb.jpg,Grape___Black_rot,Strawberry___Leaf_scorch,57.32,True
+grape leaf black rot,35589125035_662dd5b258_b.jpg,Grape___Black_rot,Grape___Black_rot,43.57,True
+grape leaf black rot,5-29black-rot-chardRR.jpg,Grape___Black_rot,Grape___Black_rot,99.53,True
+grape leaf black rot,Black%20rot%20on%20foliage.jpg,Grape___Black_rot,Squash___Powdery_mildew,29.59,True
+grape leaf black rot,Black%20rot%20on%20foliage2.jpg,Grape___Black_rot,Grape___Black_rot,55.2,True
+grape leaf black rot,brleaf2_zoom.jpg,Grape___Black_rot,Grape___Esca_(Black_Measles),49.35,False
+grape leaf black rot,grape_F15a.jpg,Grape___Black_rot,Grape___Esca_(Black_Measles),50.17,True
+grape leaf black rot,piano%20gully%20spray%20seed%20damage%2006%20%289%29.JPG.jpg,Grape___Black_rot,Grape___Black_rot,51.78,True
+Potato leaf early blight,3023.jpg,Potato___Early_blight,Strawberry___Leaf_scorch,76.27,True
+Potato leaf early blight,early-blight-alternaria-alternata-leaf-spotting-on-potato-leaf-X91XJE.jpg,Potato___Early_blight,Potato___Early_blight,97.94,True
+Potato leaf early blight,early-blight-or-target-spot-alternaria-solani-lesions-on-a-tomato-AXK6AY.jpg,Potato___Early_blight,Tomato___Early_blight,99.97,False
+Potato leaf early blight,potato-blight-phytophthora-infestans-close-up-of-upper-surface-of-BMMRXC.jpg,Potato___Early_blight,Potato___Late_blight,84.59,False
+Potato leaf early blight,potato-early-blight-alternaria-alternata-lesion-on-a-potato-leaf-a1w1em.jpg,Potato___Early_blight,Potato___Early_blight,99.89,True
+Potato leaf early blight,potatobd001.jpg,Potato___Early_blight,Tomato___Late_blight,91.52,False
+Potato leaf late blight,20090710-lateblight.jpg,Potato___Late_blight,Tomato___Late_blight,98.43,False
+Potato leaf late blight,2540_600.jpg,Potato___Late_blight,Tomato___Late_blight,68.0,False
+Potato leaf late blight,B2750109-Late_blight_on_a_potato_plant-SPL.jpg,Potato___Late_blight,Grape___Black_rot,99.0,False
+Potato leaf late blight,LateBlight04.jpg,Potato___Late_blight,Strawberry___Leaf_scorch,74.33,False
+Potato leaf late blight,potato-late-blight.jpg,Potato___Late_blight,Tomato___Late_blight,97.92,False
+Squash Powdery mildew leaf,powdery-mildew-erysiphe-plantani-on-young-sycamore-leaves-b774tm.jpg,Squash___Powdery_mildew,Tomato___Septoria_leaf_spot,29.35,True
+Squash Powdery mildew leaf,powdery-mildew-on-pumpkin-leaves-close-up-2.jpg,Squash___Powdery_mildew,Squash___Powdery_mildew,99.13,True
+Squash Powdery mildew leaf,Powdery-Mildew-on-squash.jpg,Squash___Powdery_mildew,Strawberry___healthy,74.93,False
+Squash Powdery mildew leaf,powdery-mildew-sphaerotheca-fuliginea-infection-on-pumpkin-leaves-ajdkkx.jpg,Squash___Powdery_mildew,Strawberry___healthy,88.14,True
+Squash Powdery mildew leaf,squash-leave-w-powd-mild.jpg,Squash___Powdery_mildew,Squash___Powdery_mildew,99.16,True
+Squash Powdery mildew leaf,surface.jpg,Squash___Powdery_mildew,Grape___Black_rot,94.43,True
+Tomato Early blight leaf,039b47d574bc4bb8a14259a1cd96a741.jpg,Tomato___Early_blight,"Pepper,_bell___Bacterial_spot",64.19,True
+Tomato Early blight leaf,100983448.jpg,Tomato___Early_blight,Tomato___Early_blight,91.46,True
+Tomato Early blight leaf,1234080-Early-Blight.jpg,Tomato___Early_blight,Grape___Black_rot,66.89,True
+Tomato Early blight leaf,bugs-and-blight-061.jpg,Tomato___Early_blight,Strawberry___Leaf_scorch,14.68,False
+Tomato Early blight leaf,dscn3175.jpg,Tomato___Early_blight,Strawberry___Leaf_scorch,37.85,False
+Tomato Early blight leaf,early_blight1-150x150.jpg,Tomato___Early_blight,Tomato___Early_blight,100.0,True
+Tomato Early blight leaf,earlyblight21_.jpg,Tomato___Early_blight,"Pepper,_bell___Bacterial_spot",87.28,False
+Tomato Early blight leaf,Shoemaker_7068.JPG.jpg,Tomato___Early_blight,Grape___Black_rot,99.81,False
+Tomato Early blight leaf,tomato_early-blight_01_zoom.jpg,Tomato___Early_blight,Tomato___Early_blight,99.43,True
+Tomato leaf bacterial spot,%2320+Bacterial+Spot+and+Speck.jpg,Tomato___Bacterial_spot,Strawberry___Leaf_scorch,98.75,False
+Tomato leaf bacterial spot,07.17.18-Common_Tomato_Diseases_Canker-258x300.jpg,Tomato___Bacterial_spot,Strawberry___Leaf_scorch,70.28,False
+Tomato leaf bacterial spot,bact-spot-fig-1.jpg,Tomato___Bacterial_spot,"Pepper,_bell___Bacterial_spot",55.15,False
+Tomato leaf bacterial spot,Bacterial_spots563.jpg,Tomato___Bacterial_spot,"Pepper,_bell___Bacterial_spot",75.82,False
+Tomato leaf bacterial spot,Tom_Bact3.jpg,Tomato___Bacterial_spot,Corn_(maize)___Common_rust_,99.95,False
+Tomato leaf bacterial spot,Tom_Bact7.jpg,Tomato___Bacterial_spot,Strawberry___Leaf_scorch,98.66,False
+Tomato leaf bacterial spot,Tomato%2BBacterial%2BSpot%2Bon%2BLeaves.jpg,Tomato___Bacterial_spot,Grape___Black_rot,26.24,False
+Tomato leaf bacterial spot,tomato_bacterial-speck_01_zoom.jpg,Tomato___Bacterial_spot,Grape___Black_rot,99.65,False
+Tomato leaf late blight,110822-206-Tomato-blight.jpg,Tomato___Late_blight,Tomato___Late_blight,99.99,True
+Tomato leaf late blight,18c.jpg,Tomato___Late_blight,Corn_(maize)___Northern_Leaf_Blight,26.63,False
+Tomato leaf late blight,636368370164094909-late-blight-15-.jpg,Tomato___Late_blight,Tomato___Late_blight,87.39,True
+Tomato leaf late blight,70.jpg,Tomato___Late_blight,Grape___Black_rot,59.28,False
+Tomato leaf late blight,dsc_8148cs.jpg,Tomato___Late_blight,Strawberry___Leaf_scorch,56.16,True
+Tomato leaf late blight,E%29Tomato-late-blight-foliar.jpg,Tomato___Late_blight,Tomato___Late_blight,93.16,True
+Tomato leaf late blight,image.jpg,Tomato___Late_blight,Tomato___Late_blight,53.3,True
+Tomato leaf late blight,IMG_5808.jpg,Tomato___Late_blight,Tomato___Late_blight,29.31,True
+Tomato leaf late blight,late_blight_tomato_leaf_spore1x1200.jpg,Tomato___Late_blight,Tomato___Late_blight,41.45,True
+Tomato leaf late blight,LateBlt09_06.jpg,Tomato___Late_blight,Tomato___Early_blight,97.68,False
+Tomato leaf mosaic virus,9511.img.jpg,Tomato___Tomato_mosaic_virus,Grape___Esca_(Black_Measles),30.59,False
+Tomato leaf mosaic virus,D%29AlfMov.jpg,Tomato___Tomato_mosaic_virus,Tomato___Late_blight,92.87,False
+Tomato leaf mosaic virus,everystockphoto-21099455-l.jpg,Tomato___Tomato_mosaic_virus,Tomato___Tomato_Yellow_Leaf_Curl_Virus,54.31,False
+Tomato leaf mosaic virus,ill-tomato-of-tomato-mosaic-virus-DBE17N.jpg,Tomato___Tomato_mosaic_virus,"Pepper,_bell___Bacterial_spot",42.72,False
+Tomato leaf mosaic virus,page_2.jpg,Tomato___Tomato_mosaic_virus,Tomato___Late_blight,83.04,False
+Tomato leaf mosaic virus,tmv-tomato-34.jpg,Tomato___Tomato_mosaic_virus,Tomato___Early_blight,31.7,False
+Tomato leaf mosaic virus,tmv-tomato-9.jpg,Tomato___Tomato_mosaic_virus,Squash___Powdery_mildew,98.38,False
+Tomato leaf mosaic virus,toma_TMV.jpg,Tomato___Tomato_mosaic_virus,Tomato___Early_blight,53.68,True
+Tomato leaf mosaic virus,Tomato-Mosaic-1wdr2jx-300x225.jpg,Tomato___Tomato_mosaic_virus,Corn_(maize)___healthy,65.62,False
+Tomato leaf mosaic virus,tomato_virus_04_zoom.jpg,Tomato___Tomato_mosaic_virus,Grape___Black_rot,63.79,False
+Tomato leaf yellow virus,11-40580_5.jpg,Tomato___Tomato_Yellow_Leaf_Curl_Virus,Tomato___Tomato_Yellow_Leaf_Curl_Virus,87.15,True
+Tomato leaf yellow virus,17fc47.jpg,Tomato___Tomato_Yellow_Leaf_Curl_Virus,Grape___Black_rot,34.5,False
+Tomato leaf yellow virus,8226402877_9abf151b5b_b.jpg,Tomato___Tomato_Yellow_Leaf_Curl_Virus,Tomato___Tomato_Yellow_Leaf_Curl_Virus,20.17,True
+Tomato leaf yellow virus,fwa2013313115151.jpg,Tomato___Tomato_Yellow_Leaf_Curl_Virus,Tomato___Tomato_Yellow_Leaf_Curl_Virus,9.5,True
+Tomato leaf yellow virus,glyphosate.jpg,Tomato___Tomato_Yellow_Leaf_Curl_Virus,"Pepper,_bell___Bacterial_spot",93.49,False
+Tomato mold leaf,49%20Leafmold%20Bottom.jpg,Tomato___Leaf_Mold,Tomato___Late_blight,86.64,False
+Tomato mold leaf,50%20Leafmold%20Top.jpg,Tomato___Leaf_Mold,Tomato___Early_blight,99.74,True
+Tomato mold leaf,BIGSD.jpg,Tomato___Leaf_Mold,Peach___healthy,35.96,False
+Tomato mold leaf,black_leaf_mold_in_zina_tina.jpg,Tomato___Leaf_Mold,Tomato___Early_blight,36.96,False
+Tomato mold leaf,dscn6689.jpg,Tomato___Leaf_Mold,Grape___Esca_(Black_Measles),34.12,False
+Tomato mold leaf,fungus-univ-of-minnesoeta.jpg,Tomato___Leaf_Mold,Grape___Esca_(Black_Measles),29.83,False
+Tomato Septoria leaf spot,0.jpg,Tomato___Septoria_leaf_spot,"Pepper,_bell___Bacterial_spot",61.99,False
+Tomato Septoria leaf spot,2septoria-tomato.jpg,Tomato___Septoria_leaf_spot,Corn_(maize)___Common_rust_,94.22,True
+Tomato Septoria leaf spot,2STEM.jpg,Tomato___Septoria_leaf_spot,Tomato___Septoria_leaf_spot,90.93,True
+Tomato Septoria leaf spot,55830b60a7cf2.image.jpg,Tomato___Septoria_leaf_spot,Tomato___Bacterial_spot,37.55,False
+Tomato Septoria leaf spot,6134794031202304.jpeg.jpg,Tomato___Septoria_leaf_spot,Strawberry___Leaf_scorch,39.78,False
+Tomato Septoria leaf spot,636227737977191231-septoria-leaf-spot-VT.jpg,Tomato___Septoria_leaf_spot,Strawberry___Leaf_scorch,36.63,True
+Tomato Septoria leaf spot,6447731_orig.jpg,Tomato___Septoria_leaf_spot,Tomato___Bacterial_spot,73.26,True
+Tomato Septoria leaf spot,7-17-Photo3_Septoria-MARY.jpg,Tomato___Septoria_leaf_spot,Tomato___Early_blight,63.41,False
+Tomato Septoria leaf spot,RARZ4.jpg,Tomato___Septoria_leaf_spot,Strawberry___Leaf_scorch,28.07,False
+Tomato Septoria leaf spot,sept4disease-019.jpg,Tomato___Septoria_leaf_spot,Tomato___Early_blight,91.45,False

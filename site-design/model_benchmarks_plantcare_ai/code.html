@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PlantCare AI — Model &amp; Benchmarks</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    @layer base {
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: #0a0a0a !important;
+        color: #ffffff !important;
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        font-weight: 400;
+        overscroll-behavior: none;
+      }
+      * {
+        border-color: #212327;
+        box-shadow: none !important;
+      }
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface-container-lowest": "#0a0a0a",
+            "surface-container-low": "#111111",
+            "surface-container": "#151515",
+            "surface-container-high": "#1e1e1e",
+            "canvas-card": "#191919",
+            "canvas-soft": "#121316",
+            "canvas-mid": "#22252a",
+            "hairline": "#212327",
+            "outline": "#8e9192",
+            "outline-variant": "#444748",
+            "on-surface": "#ffffff",
+            "on-surface-variant": "#a2a6aa",
+            "primary": "#ffffff",
+            "on-primary": "#0a0a0a",
+            "accent-emerald": "#34d399",
+            "accent-breeze": "#a0c3ec",
+            "accent-twilight": "#c4b5fd",
+            "accent-sunset": "#ff7a17",
+            "secondary-fixed": "#dfe3e9"
+          },
+          fontFamily: {
+            "body": ['Inter', 'system-ui', 'sans-serif'],
+            "mono": ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#0a0a0a] text-[#ffffff] font-body text-[14px] leading-relaxed antialiased selection:bg-[#ffffff] selection:text-[#0a0a0a]">
+<!-- Header: Persistent dark top navigation bar -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/95 backdrop-blur-md border-b border-[#212327]">
+<div class="h-16 w-full max-w-[1440px] mx-auto px-6 flex items-center justify-between gap-4">
+<!-- Logo -->
+<div class="flex items-center gap-3 shrink-0">
+<span class="text-[#ffffff] text-[16px] select-none">✦</span>
+<div class="flex flex-col">
+<span class="font-body text-[13px] tracking-tight text-[#ffffff] uppercase font-normal">PlantCare AI</span>
+<span class="font-mono text-[9px] uppercase tracking-[0.2em] text-[#8e9192] leading-tight">AUTONOMOUS VISION INTELLIGENCE</span>
+</div>
+</div>
+<!-- Centered pill nav -->
+<nav class="hidden lg:flex items-center bg-[#121316] border border-[#212327] rounded-full p-1 gap-1">
+<a class="px-4 py-1 rounded-full font-body text-[13px] text-[#a2a6aa] hover:text-[#ffffff] hover:bg-[#191919] transition-colors" data-path="diagnose" href="#">Diagnose</a>
+<a class="px-4 py-1 rounded-full font-body text-[13px] text-[#a2a6aa] hover:text-[#ffffff] hover:bg-[#191919] transition-colors" data-path="prediction-history" href="#">Prediction History</a>
+<a class="px-4 py-1 rounded-full font-body text-[13px] text-[#a2a6aa] hover:text-[#ffffff] hover:bg-[#191919] transition-colors" data-path="disease-library" href="#">Disease Library</a>
+<a class="px-4 py-1 rounded-full font-body text-[13px] bg-[#ffffff] text-[#0a0a0a] transition-colors" data-path="model-and-benchmarks" href="#">Model &amp; Benchmarks</a>
+<a class="px-4 py-1 rounded-full font-body text-[13px] text-[#a2a6aa] hover:text-[#ffffff] hover:bg-[#191919] transition-colors" data-path="admin-telemetry" href="#">Admin Telemetry</a>
+</nav>
+<!-- Right edge status & operator avatar -->
+<div class="flex items-center gap-3 shrink-0">
+<div class="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-[#121316] border border-[#212327] font-mono text-[11px] text-[#a2a6aa]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#34d399] animate-pulse"></span>
+<span>NODE: US-WEST-04 // 18MS</span>
+</div>
+<div class="w-8 h-8 rounded-full bg-[#ffffff] flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[#0a0a0a] text-[18px]">person</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="w-full pt-16 bg-[#0a0a0a] min-h-screen">
+<!-- System Specification & Checkpoint Pill Bar -->
+<div class="w-full bg-[#121316] border-b border-[#212327] px-6 py-2">
+<div class="max-w-[1440px] mx-auto flex flex-wrap items-center justify-between gap-y-2 gap-x-4 font-mono text-[11px] tracking-[0.14em] text-[#8e9192]">
+<div class="flex items-center gap-2 flex-wrap">
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#191919] border border-[#212327] text-[#ffffff]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#34d399]"></span>
+<span>WEIGHTS: STABLE V2.4-FP16</span>
+</div>
+<div class="px-2.5 py-1 rounded-full bg-[#191919] border border-[#212327]">
+            PARAMS: <span class="text-[#ffffff]">3.47M INT8</span>
+</div>
+<div class="px-2.5 py-1 rounded-full bg-[#191919] border border-[#212327]">
+            CHECKPOINT: <span class="text-[#dfe3e9]">SHA-256:E89B10</span>
+</div>
+</div>
+<div class="flex items-center gap-2 flex-wrap">
+<div class="px-2.5 py-1 rounded-full bg-[#191919] border border-[#212327]">
+            TOP-1 ACCURACY: <span class="text-[#34d399]">94.8%</span>
+</div>
+<div class="px-2.5 py-1 rounded-full bg-[#191919] border border-[#212327]">
+            OOD DRIFT THRESHOLD: <span class="text-[#ff7a17]">Δ0.12</span>
+</div>
+<div class="hidden md:flex px-2.5 py-1 rounded-full bg-[#191919] border border-[#212327] text-[#a2a6aa]">
+            BATCH SIZE: 64 TENSOR-RT
+          </div>
+</div>
+</div>
+</div>
+<!-- Eyebrow & Title Section -->
+<section class="w-full px-6 pt-10 pb-8 border-b border-[#212327] bg-[#0a0a0a]">
+<div class="max-w-[1440px] mx-auto flex flex-col gap-4">
+<div class="flex items-center gap-2 font-mono text-[11px] text-[#8e9192] uppercase tracking-[0.2em]">
+<span class="w-1.5 h-1.5 bg-[#ffffff]"></span>
+<span>SYSTEM SPECIFICATION // BENCHMARKING &amp; ETHICAL BOUNDARIES</span>
+</div>
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+<div>
+<h1 class="font-body text-[42px] sm:text-[54px] lg:text-[64px] text-[#ffffff] tracking-tight uppercase leading-[1.05]">
+              Model &amp; Limitations
+            </h1>
+<p class="font-body text-[15px] text-[#a2a6aa] max-w-3xl mt-3 leading-relaxed">
+              Deep learning specifications, fine-tuning benchmarks against PlantDoc, Bayesian out-of-distribution guardrails, and operational constraints across varied field lighting conditions.
+            </p>
+</div>
+<div class="flex items-center gap-3 shrink-0 flex-wrap">
+<a class="px-4 py-2 rounded-full border border-[#212327] bg-[#121316] font-body text-[13px] text-[#ffffff] hover:border-[#ffffff]/40 transition-colors flex items-center gap-2" href="#matrix">
+<span class="material-symbols-outlined text-[16px] text-[#8e9192]">tune</span>
+<span>Conformance Matrix</span>
+</a>
+<button class="px-5 py-2 rounded-full bg-[#ffffff] text-[#0a0a0a] font-body text-[13px] hover:bg-[#dfe3e9] transition-colors flex items-center gap-2" type="button">
+<span class="material-symbols-outlined text-[16px]">download</span>
+<span>Weights .safetensors (14.2 MB)</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- 3 Pillar Architectural Cards -->
+<section class="w-full px-6 py-10 border-b border-[#212327] bg-[#0a0a0a]">
+<div class="max-w-[1440px] mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Pillar 01 -->
+<div class="flex flex-col justify-between bg-[#191919] border border-[#212327] rounded-[8px] p-6">
+<div>
+<div class="flex items-center justify-between border-b border-[#212327] pb-3 mb-4 font-mono text-[11px] tracking-[0.16em]">
+<span class="text-[#8e9192] uppercase">ARCH: RES-BOTTLENECK</span>
+<span class="text-[#a0c3ec]">PILLAR 01</span>
+</div>
+<h2 class="font-body text-[20px] text-[#ffffff] uppercase tracking-tight mb-2">
+                Backbone Network
+              </h2>
+<p class="font-body text-[13px] text-[#a2a6aa] leading-relaxed">
+                MobileNetV2 inverted residual bottleneck architecture optimized for sub-20ms edge inference on embedded agricultural field hardware. Features linear bottleneck layers designed specifically to preserve high-frequency foliar venation topologies and early necrotic margins without spatial degradation.
+              </p>
+</div>
+<div class="pt-5 mt-5 border-t border-[#212327] flex items-center justify-between font-mono text-[11px]">
+<span class="text-[#8e9192] uppercase">QUANTIZATION: <span class="text-[#ffffff]">INT8</span></span>
+<span class="px-2.5 py-0.5 rounded-full bg-[#121316] border border-[#212327] text-[#34d399] uppercase text-[10px]">
+                ZERO LOSS &lt; 0.18%
+              </span>
+</div>
+</div>
+<!-- Pillar 02 -->
+<div class="flex flex-col justify-between bg-[#191919] border border-[#212327] rounded-[8px] p-6">
+<div>
+<div class="flex items-center justify-between border-b border-[#212327] pb-3 mb-4 font-mono text-[11px] tracking-[0.16em]">
+<span class="text-[#8e9192] uppercase">DS-HASH: PDOC-EXP4</span>
+<span class="text-[#c4b5fd]">PILLAR 02</span>
+</div>
+<h2 class="font-body text-[20px] text-[#ffffff] uppercase tracking-tight mb-2">
+                Training Corpus
+              </h2>
+<p class="font-body text-[13px] text-[#a2a6aa] leading-relaxed">
+                PlantDoc benchmark hybridized with 18,400 multi-spectral in-situ field leaf specimens spanning 38 distinct crop-pathogen taxa. Augmented via synthetic chromatic aberration, heavy rain splatter artifacts, solar albedo variance, and random perspective skewing to simulate rugged smartphone fieldwork.
+              </p>
+</div>
+<div class="pt-5 mt-5 border-t border-[#212327] flex items-center justify-between font-mono text-[11px]">
+<span class="text-[#8e9192] uppercase">STRATIFIED K-FOLD: <span class="text-[#ffffff]">5-SPLIT</span></span>
+<span class="px-2.5 py-0.5 rounded-full bg-[#121316] border border-[#212327] text-[#c4b5fd] uppercase text-[10px]">
+                38 TAXA LABELS
+              </span>
+</div>
+</div>
+<!-- Pillar 03 -->
+<div class="flex flex-col justify-between bg-[#191919] border border-[#212327] rounded-[8px] p-6">
+<div>
+<div class="flex items-center justify-between border-b border-[#212327] pb-3 mb-4 font-mono text-[11px] tracking-[0.16em]">
+<span class="text-[#8e9192] uppercase">BAYES-MARGIN: ±15%</span>
+<span class="text-[#ff7a17]">PILLAR 03</span>
+</div>
+<h2 class="font-body text-[20px] text-[#ffffff] uppercase tracking-tight mb-2">
+                OOD Guardrail
+              </h2>
+<p class="font-body text-[13px] text-[#a2a6aa] leading-relaxed">
+                Mahalanobis distance scoring computed across latent bottleneck space coupled with Monte Carlo Dropout uncertainty tracking. Automatically intercepts inferences with top-1 softmax confidence &lt; 0.65 or separation margin &lt; 15%, rerouting queries to prevent hallucinated fungal classifications.
+              </p>
+</div>
+<div class="pt-5 mt-5 border-t border-[#212327] flex items-center justify-between font-mono text-[11px]">
+<span class="text-[#8e9192] uppercase">FAILSAFE ROUTE</span>
+<span class="px-2.5 py-0.5 rounded-full bg-[#121316] border border-[#212327] text-[#ff7a17] uppercase text-[10px]">
+                AGRONOMIST TRIAGE
+              </span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Validation Dataset & Fine-Tuning Benchmark Delta -->
+<section class="w-full px-6 py-12 border-b border-[#212327] bg-[#0a0a0a]">
+<div class="max-w-[1440px] mx-auto flex flex-col gap-8">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#212327] pb-4">
+<div>
+<span class="font-mono text-[11px] text-[#8e9192] uppercase tracking-[0.18em]">VALIDATION DATASET // 5,210 CROPPED CANOPY SCANS</span>
+<h2 class="font-body text-[28px] text-[#ffffff] tracking-tight uppercase mt-1">
+              Fine-Tuning Benchmark Delta
+            </h2>
+</div>
+<div class="font-mono text-[11px] text-[#8e9192] flex items-center gap-4">
+<div class="flex items-center gap-2"><span class="w-2.5 h-2.5 bg-[#444748] rounded-[2px]"></span><span>ResNet-50 Baseline</span></div>
+<div class="flex items-center gap-2"><span class="w-2.5 h-2.5 bg-[#ffffff] rounded-[2px]"></span><span>PlantCare V2 (MobileNetV2-INT8)</span></div>
+</div>
+</div>
+<!-- 4 Comparative Progress Bar Cards -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<!-- Metric 1: Macro Precision -->
+<div class="p-6 bg-[#191919] border border-[#212327] rounded-[8px] flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<span class="font-mono text-[11px] text-[#8e9192] uppercase tracking-[0.14em]">METRIC // PREC_MACRO</span>
+<span class="px-2 py-0.5 text-[10px] font-mono uppercase text-[#34d399] bg-[#121316] border border-[#212327] rounded-full">+7.2% GAIN (p &lt; 0.001)</span>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-body text-[18px] text-[#ffffff] uppercase tracking-tight">Macro Precision</span>
+<span class="font-mono text-[24px] text-[#ffffff]">94.6%</span>
+</div>
+<div class="flex flex-col gap-1.5 pt-1">
+<div class="flex items-center justify-between font-mono text-[11px] text-[#8e9192]">
+<span>Baseline: 87.4%</span>
+<span class="text-[#ffffff]">Target: 95.0%</span>
+</div>
+<!-- Comparative horizontal progress bars -->
+<div class="w-full bg-[#0a0a0a] rounded-[4px] p-1 border border-[#212327] flex flex-col gap-1">
+<div class="h-1.5 bg-[#444748] rounded-[2px]" style="width: 87.4%;" title="ResNet-50 Baseline: 87.4%"></div>
+<div class="h-1.5 bg-[#ffffff] rounded-[2px]" style="width: 94.6%;" title="PlantCare V2: 94.6%"></div>
+</div>
+</div>
+<p class="font-body text-[12px] text-[#a2a6aa] leading-relaxed">Significant drop in false positive necrotic spot classifications across solanaceous foliar clusters.</p>
+</div>
+<!-- Metric 2: Macro Recall -->
+<div class="p-6 bg-[#191919] border border-[#212327] rounded-[8px] flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<span class="font-mono text-[11px] text-[#8e9192] uppercase tracking-[0.14em]">METRIC // REC_MACRO</span>
+<span class="px-2 py-0.5 text-[10px] font-mono uppercase text-[#34d399] bg-[#121316] border border-[#212327] rounded-full">+8.0% GAIN (CI 95%)</span>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-body text-[18px] text-[#ffffff] uppercase tracking-tight">Macro Recall</span>
+<span class="font-mono text-[24px] text-[#ffffff]">94.1%</span>
+</div>
+<div class="flex flex-col gap-1.5 pt-1">
+<div class="flex items-center justify-between font-mono text-[11px] text-[#8e9192]">
+<span>Baseline: 86.1%</span>
+<span class="text-[#ffffff]">Confidence: [93.4%, 94.8%]</span>
+</div>
+<div class="w-full bg-[#0a0a0a] rounded-[4px] p-1 border border-[#212327] flex flex-col gap-1">
+<div class="h-1.5 bg-[#444748] rounded-[2px]" style="width: 86.1%;" title="ResNet-50 Baseline: 86.1%"></div>
+<div class="h-1.5 bg-[#ffffff] rounded-[2px]" style="width: 94.1%;" title="PlantCare V2: 94.1%"></div>
+</div>
+</div>
+<p class="font-body text-[12px] text-[#a2a6aa] leading-relaxed">Minimizes missed early stage late blight (Phytophthora infestans) lesions under shaded leaf petioles.</p>
+</div>
+<!-- Metric 3: Weighted F1-Score -->
+<div class="p-6 bg-[#191919] border border-[#212327] rounded-[8px] flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<span class="font-mono text-[11px] text-[#8e9192] uppercase tracking-[0.14em]">METRIC // F1_WEIGHTED</span>
+<span class="px-2 py-0.5 text-[10px] font-mono uppercase text-[#34d399] bg-[#121316] border border-[#212327] rounded-full">+8.1% GAIN (K-FOLD)</span>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-body text-[18px] text-[#ffffff] uppercase tracking-tight">Weighted F1-Score</span>
+<span class="font-mono text-[24px] text-[#ffffff]">94.8%</span>
+</div>
+<div class="flex flex-col gap-1.5 pt-1">
+<div class="flex items-center justify-between font-mono text-[11px] text-[#8e9192]">
+<span>Baseline: 86.7%</span>
+<span class="text-[#ffffff]">Harmonic Mean Balance</span>
+</div>
+<div class="w-full bg-[#0a0a0a] rounded-[4px] p-1 border border-[#212327] flex flex-col gap-1">
+<div class="h-1.5 bg-[#444748] rounded-[2px]" style="width: 86.7%;" title="ResNet-50 Baseline: 86.7%"></div>
+<div class="h-1.5 bg-[#ffffff] rounded-[2px]" style="width: 94.8%;" title="PlantCare V2: 94.8%"></div>
+</div>
+</div>
+<p class="font-body text-[12px] text-[#a2a6aa] leading-relaxed">Calculated with class weighting across imbalanced field specimens including rare rust variants.</p>
+</div>
+<!-- Metric 4: Edge Latency -->
+<div class="p-6 bg-[#191919] border border-[#212327] rounded-[8px] flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<span class="font-mono text-[11px] text-[#8e9192] uppercase tracking-[0.14em]">METRIC // CPU_EDGE_TIME</span>
+<span class="px-2 py-0.5 text-[10px] font-mono uppercase text-[#34d399] bg-[#121316] border border-[#212327] rounded-full">47% LATENCY REDUCTION</span>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-body text-[18px] text-[#ffffff] uppercase tracking-tight">Raspberry Pi 4B (1.5GHz)</span>
+<span class="font-mono text-[24px] text-[#34d399]">18 ms</span>
+</div>
+<div class="flex flex-col gap-1.5 pt-1">
+<div class="flex items-center justify-between font-mono text-[11px] text-[#8e9192]">
+<span>Baseline ResNet: 34 ms</span>
+<span class="text-[#ffffff]">INT8 Engine Optimized</span>
+</div>
+<div class="w-full bg-[#0a0a0a] rounded-[4px] p-1 border border-[#212327] flex flex-col gap-1">
+<div class="h-1.5 bg-[#444748] rounded-[2px]" style="width: 100%;" title="Baseline: 34 ms"></div>
+<div class="h-1.5 bg-[#34d399] rounded-[2px]" style="width: 53%;" title="PlantCare: 18 ms"></div>
+</div>
+</div>
+<p class="font-body text-[12px] text-[#a2a6aa] leading-relaxed">Supports live camera feed inference at 55 FPS directly on uncooled tractor-mounted edge gateways.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Training Dynamics & Runtime Audit Row -->
+<section class="w-full px-6 py-12 border-b border-[#212327] bg-[#0a0a0a]">
+<div class="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left: Training Loss Curve Visualizer (7 cols) -->
+<div class="lg:col-span-7 bg-[#191919] border border-[#212327] rounded-[8px] p-6 flex flex-col justify-between">
+<div class="flex flex-col gap-1 border-b border-[#212327] pb-4">
+<div class="flex items-center justify-between font-mono text-[11px]">
+<span class="text-[#8e9192] uppercase tracking-[0.16em]">TRAINING DYNAMICS // ADAMW + COSINE ANNEALING</span>
+<span class="text-[#ffffff]">120 EPOCHS</span>
+</div>
+<h3 class="font-body text-[20px] text-[#ffffff] uppercase tracking-tight">Cross-Entropy Loss Trajectory</h3>
+</div>
+<div class="py-6 flex flex-col gap-3">
+<div class="w-full h-44 relative flex items-end">
+<!-- Grid lines -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-20">
+<div class="w-full border-b border-dashed border-[#8e9192]"></div>
+<div class="w-full border-b border-dashed border-[#8e9192]"></div>
+<div class="w-full border-b border-dashed border-[#8e9192]"></div>
+<div class="w-full border-b border-dashed border-[#8e9192]"></div>
+</div>
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 600 180">
+<!-- Baseline Loss Curve (Dashed line) -->
+<path d="M 0,16 Q 100,60 200,90 T 400,120 T 600,135" fill="none" opacity="0.4" stroke="#8e9192" stroke-dasharray="4,4" stroke-width="1.5"></path>
+<!-- PlantCare Loss Area Gradient -->
+<defs>
+<lineargradient id="lossGrad" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#ffffff" stop-opacity="0.12"></stop>
+<stop offset="100%" stop-color="#ffffff" stop-opacity="0.0"></stop>
+</lineargradient>
+</defs>
+<path d="M 0,10 Q 50,75 120,115 T 250,145 T 450,165 L 600,172 L 600,180 L 0,180 Z" fill="url(#lossGrad)"></path>
+<!-- PlantCare Loss Curve -->
+<path d="M 0,10 Q 50,75 120,115 T 250,145 T 450,165 L 600,172" fill="none" stroke="#ffffff" stroke-width="2"></path>
+<!-- Convergence checkpoint marker -->
+<circle cx="450" cy="165" fill="#34d399" r="4"></circle>
+<text fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="9" text-anchor="end" x="440" y="152">CONVERGENCE (EPOCH 90)</text>
+</svg>
+</div>
+<div class="flex items-center justify-between font-mono text-[10px] text-[#8e9192] pt-2">
+<span>EPOCH 001 // CE: 2.840</span>
+<span>EPOCH 040 // CE: 0.812</span>
+<span>EPOCH 080 // CE: 0.285</span>
+<span class="text-[#34d399]">EPOCH 120 // CE: 0.142</span>
+</div>
+</div>
+<div class="border-t border-[#212327] pt-4 flex items-center justify-between font-mono text-[11px] text-[#8e9192]">
+<span>REGULARIZATION: L2 1e-4 // DROPOUT: 0.20</span>
+<span class="text-[#ffffff]">VAL PERPLEXITY: 1.08</span>
+</div>
+</div>
+<!-- Right: Live Field Runtime Audit Box (5 cols) -->
+<div class="lg:col-span-5 flex flex-col gap-6">
+<div class="bg-[#191919] border border-[#212327] rounded-[8px] p-6 flex flex-col justify-between flex-1">
+<div class="flex items-center justify-between border-b border-[#212327] pb-3 font-mono text-[11px]">
+<span class="text-[#8e9192] uppercase tracking-[0.16em]">LIVE AUDIT // FIELD RUNTIME</span>
+<span class="text-[#ff7a17]">BAYESIAN GATE</span>
+</div>
+<div class="my-4 flex flex-col gap-3">
+<div class="flex items-baseline justify-between">
+<span class="font-mono text-[32px] text-[#ffffff]">142,891</span>
+<span class="font-mono text-[11px] text-[#8e9192] uppercase">Scans Screened</span>
+</div>
+<div class="w-full bg-[#0a0a0a] h-2 rounded-full overflow-hidden flex border border-[#212327]">
+<div class="h-full bg-[#34d399]" style="width: 93.4%;" title="Confident Top-1 (93.4%)"></div>
+<div class="h-full bg-[#c4b5fd]" style="width: 4.8%;" title="Secondary Margin Check (4.8%)"></div>
+<div class="h-full bg-[#ff7a17]" style="width: 1.8%;" title="OOD Guardrail Intercept (1.8%)"></div>
+</div>
+<div class="grid grid-cols-3 gap-2 pt-1 text-center font-mono text-[11px]">
+<div class="bg-[#121316] border border-[#212327] p-2 rounded-[4px]">
+<span class="text-[#8e9192] block text-[9px] uppercase">AUTONOMOUS</span>
+<span class="text-[#34d399] font-normal">93.4%</span>
+</div>
+<div class="bg-[#121316] border border-[#212327] p-2 rounded-[4px]">
+<span class="text-[#8e9192] block text-[9px] uppercase">UNCERTAIN</span>
+<span class="text-[#c4b5fd] font-normal">4.8%</span>
+</div>
+<div class="bg-[#121316] border border-[#212327] p-2 rounded-[4px]">
+<span class="text-[#8e9192] block text-[9px] uppercase">INTERCEPT</span>
+<span class="text-[#ff7a17] font-normal">1.8%</span>
+</div>
+</div>
+</div>
+<div class="border-t border-[#212327] pt-3 flex items-center justify-between font-mono text-[11px]">
+<span class="text-[#8e9192] uppercase">AGRONOMIST CONSENSUS</span>
+<span class="text-[#ffffff] font-normal">99.1% ALIGNED</span>
+</div>
+</div>
+<!-- Pathology Variance Extremes Box -->
+<div class="bg-[#191919] border border-[#212327] rounded-[8px] p-6 flex flex-col justify-between">
+<div class="border-b border-[#212327] pb-3 font-mono text-[11px] text-[#8e9192] uppercase tracking-[0.16em]">
+              TAXONOMY CONFIDENCE SPECTRUM
+            </div>
+<div class="py-4 flex flex-col gap-3">
+<div class="flex items-center justify-between font-mono text-[11px]">
+<span class="text-[#ffffff]">Erysiphe necator (Powdery Mildew)</span>
+<span class="text-[#34d399]">99.4% [MIN ENTROPY]</span>
+</div>
+<div class="w-full bg-[#0a0a0a] h-1.5 rounded-full overflow-hidden border border-[#212327]">
+<div class="h-full bg-[#34d399]" style="width: 99.4%;"></div>
+</div>
+<div class="flex items-center justify-between font-mono text-[11px] mt-1">
+<span class="text-[#ffffff]">Tomato Mosaic Tobamovirus (ToMV)</span>
+<span class="text-[#ff7a17]">84.2% [PEAK VARIANCE]</span>
+</div>
+<div class="w-full bg-[#0a0a0a] h-1.5 rounded-full overflow-hidden border border-[#212327]">
+<div class="h-full bg-[#ff7a17]" style="width: 84.2%;"></div>
+</div>
+</div>
+<span class="font-mono text-[10px] text-[#8e9192] leading-tight">
+              Viral mottling displays spectral overlap with nitrogen depletion; secondary leaf chlorosis index applied.
+            </span>
+</div>
+</div>
+</div>
+</section>
+<!-- Ethical & Phytosanitary Constraints (3 Boundary cards) -->
+<section class="w-full px-6 py-12 border-b border-[#212327] bg-[#0a0a0a]">
+<div class="max-w-[1440px] mx-auto flex flex-col gap-8">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-1.5 font-mono text-[11px] text-[#ff7a17] uppercase tracking-[0.18em]">
+<span class="material-symbols-outlined text-[15px]">warning</span>
+<span>ETHICAL &amp; PHYTOSANITARY CONSTRAINTS</span>
+</div>
+<h2 class="font-body text-[28px] text-[#ffffff] tracking-tight uppercase">
+            Known Operational Limitations
+          </h2>
+<p class="font-body text-[14px] text-[#a2a6aa] max-w-2xl mt-1 leading-relaxed">
+            Empirical machine learning models are diagnostic accelerators, not absolute arbiters. The following boundary conditions govern automated decision-making.
+          </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Boundary 01 -->
+<div class="bg-[#191919] border border-[#212327] rounded-[8px] p-6 flex flex-col justify-between">
+<div class="flex flex-col gap-3">
+<div class="flex items-center justify-between border-b border-[#212327] pb-3 font-mono text-[11px]">
+<span class="text-[#ff7a17]">BOUNDARY 01</span>
+<span class="text-[#8e9192] uppercase">CO-INFECTION</span>
+</div>
+<h3 class="font-body text-[18px] text-[#ffffff] uppercase tracking-tight">
+                Multi-Pathogen Co-Infection Masking
+              </h3>
+<p class="font-body text-[12px] text-[#a2a6aa] leading-relaxed">
+                When fungal blight and bacterial speck concurrently colonize a single leaf lamina, the model assigns priority weight to the primary necrotic zone (&gt;60% surface area). Secondary opportunistic viral infestations are suppressed in top-1 inference. Agronomists must inspect margin contours manually.
+              </p>
+</div>
+<div class="pt-5 mt-5 border-t border-[#212327] font-mono text-[11px] text-[#8e9192] uppercase flex items-center justify-between">
+<span>FAIL-SAFE</span>
+<span class="text-[#ffffff]">FLAG DUAL-LESION WARNING</span>
+</div>
+</div>
+<!-- Boundary 02 -->
+<div class="bg-[#191919] border border-[#212327] rounded-[8px] p-6 flex flex-col justify-between">
+<div class="flex flex-col gap-3">
+<div class="flex items-center justify-between border-b border-[#212327] pb-3 font-mono text-[11px]">
+<span class="text-[#ff7a17]">BOUNDARY 02</span>
+<span class="text-[#8e9192] uppercase">ILLUMINANCE</span>
+</div>
+<h3 class="font-body text-[18px] text-[#ffffff] uppercase tracking-tight">
+                Direct Midday Solar Glare &gt; 240 RGB
+              </h3>
+<p class="font-body text-[12px] text-[#a2a6aa] leading-relaxed">
+                Specular highlights induced by direct sunlight on waxy leaf cuticles (e.g., citrus or apple foliage) saturate RGB sensors above 240 intensity. This obliterates cellular color detail, triggering an automatic 'Specular Overexposure' rejection requiring angle re-orientation.
+              </p>
+</div>
+<div class="pt-5 mt-5 border-t border-[#212327] font-mono text-[11px] text-[#8e9192] uppercase flex items-center justify-between">
+<span>ACTION</span>
+<span class="text-[#ffffff]">FORCE POLARIZED FILTER</span>
+</div>
+</div>
+<!-- Boundary 03 -->
+<div class="bg-[#191919] border border-[#212327] rounded-[8px] p-6 flex flex-col justify-between">
+<div class="flex flex-col gap-3">
+<div class="flex items-center justify-between border-b border-[#212327] pb-3 font-mono text-[11px]">
+<span class="text-[#ff7a17]">BOUNDARY 03</span>
+<span class="text-[#8e9192] uppercase">ABIOTIC BIAS</span>
+</div>
+<h3 class="font-body text-[18px] text-[#ffffff] uppercase tracking-tight">
+                Abiotic Stress vs Viral Chlorosis
+              </h3>
+<p class="font-body text-[12px] text-[#a2a6aa] leading-relaxed">
+                Nitrogen starvation, iron deficiency chlorosis, and drought stress evoke spectral phenotypes identical to early-stage viral yellowing. Predictions with high abiotic probability require validation against paired soil electrical conductivity (EC) telemetry and rhizosphere moisture data.
+              </p>
+</div>
+<div class="pt-5 mt-5 border-t border-[#212327] font-mono text-[11px] text-[#8e9192] uppercase flex items-center justify-between">
+<span>RULE</span>
+<span class="text-[#ffffff]">CROSS-SENSOR EC TELEMETRY</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Runtime Hardware Conformance Matrix -->
+<section class="w-full px-6 py-12 bg-[#0a0a0a]" id="matrix">
+<div class="max-w-[1440px] mx-auto flex flex-col gap-8">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#212327] pb-4">
+<div>
+<span class="font-mono text-[11px] text-[#8e9192] uppercase tracking-[0.18em]">RUNTIME TARGET SPECIFICATIONS</span>
+<h2 class="font-body text-[28px] text-[#ffffff] tracking-tight uppercase mt-1">
+              Hardware Conformance Matrix
+            </h2>
+</div>
+<div class="font-mono text-[11px] text-[#8e9192]">
+            TARGET ARCHITECTURES: ARM64 // INTEL-X86 // QUALCOMM HEXAGON NPU
+          </div>
+</div>
+<!-- Table Container -->
+<div class="w-full overflow-x-auto border border-[#212327] rounded-[8px] bg-[#191919]">
+<table class="w-full text-left font-mono text-[12px]">
+<thead class="bg-[#121316] border-b border-[#212327] text-[#8e9192] uppercase text-[11px] tracking-[0.14em]">
+<tr>
+<th class="py-3 px-6">Execution Environment</th>
+<th class="py-3 px-6">Precision</th>
+<th class="py-3 px-6">P95 Latency</th>
+<th class="py-3 px-6">RAM Footprint</th>
+<th class="py-3 px-6">Thermal Drift</th>
+<th class="py-3 px-6 text-right">Conformance</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#212327]">
+<tr class="hover:bg-[#121316]/70 transition-colors">
+<td class="py-3.5 px-6 font-body text-[#ffffff] flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-[#8e9192]">memory</span>
+<span>Raspberry Pi 4B (Broadcom BCM2711)</span>
+</td>
+<td class="py-3.5 px-6 text-[#8e9192]">INT8-TFLite</td>
+<td class="py-3.5 px-6 text-[#ffffff]">18.2 ms</td>
+<td class="py-3.5 px-6 text-[#8e9192]">48 MB</td>
+<td class="py-3.5 px-6 text-[#34d399]">&lt; 1.2°C ΔT</td>
+<td class="py-3.5 px-6 text-right">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-[#121316] border border-[#212327] text-[#34d399] uppercase text-[10px]">
+                    CERTIFIED TIER-1
+                  </span>
+</td>
+</tr>
+<tr class="hover:bg-[#121316]/70 transition-colors">
+<td class="py-3.5 px-6 font-body text-[#ffffff] flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-[#8e9192]">developer_board</span>
+<span>NVIDIA Jetson Nano (Maxwell 128-core)</span>
+</td>
+<td class="py-3.5 px-6 text-[#8e9192]">FP16-TensorRT</td>
+<td class="py-3.5 px-6 text-[#ffffff]">6.4 ms</td>
+<td class="py-3.5 px-6 text-[#8e9192]">112 MB</td>
+<td class="py-3.5 px-6 text-[#34d399]">&lt; 0.8°C ΔT</td>
+<td class="py-3.5 px-6 text-right">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-[#121316] border border-[#212327] text-[#34d399] uppercase text-[10px]">
+                    CERTIFIED TIER-1
+                  </span>
+</td>
+</tr>
+<tr class="hover:bg-[#121316]/70 transition-colors">
+<td class="py-3.5 px-6 font-body text-[#ffffff] flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-[#8e9192]">smartphone</span>
+<span>Apple Silicon A16/A17 (CoreML Neural Engine)</span>
+</td>
+<td class="py-3.5 px-6 text-[#8e9192]">INT8-CoreML</td>
+<td class="py-3.5 px-6 text-[#ffffff]">2.1 ms</td>
+<td class="py-3.5 px-6 text-[#8e9192]">24 MB</td>
+<td class="py-3.5 px-6 text-[#34d399]">NOMINAL</td>
+<td class="py-3.5 px-6 text-right">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-[#121316] border border-[#212327] text-[#34d399] uppercase text-[10px]">
+                    CERTIFIED TIER-1
+                  </span>
+</td>
+</tr>
+<tr class="hover:bg-[#121316]/70 transition-colors">
+<td class="py-3.5 px-6 font-body text-[#ffffff] flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-[#8e9192]">cloud_queue</span>
+<span>Server Cluster (NVIDIA A100 SXM4)</span>
+</td>
+<td class="py-3.5 px-6 text-[#8e9192]">FP32 Master</td>
+<td class="py-3.5 px-6 text-[#ffffff]">0.8 ms</td>
+<td class="py-3.5 px-6 text-[#8e9192]">220 MB</td>
+<td class="py-3.5 px-6 text-[#34d399]">COOLED</td>
+<td class="py-3.5 px-6 text-right">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-[#121316] border border-[#212327] text-[#a2a6aa] uppercase text-[10px]">
+                    REFERENCE GOLD
+                  </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Action Verification / Checksum Download Footer Panel -->
+<div class="bg-[#191919] border border-[#212327] rounded-[8px] p-6 flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-[#121316] border border-[#212327] flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[#ffffff] text-[18px]">verified_user</span>
+</div>
+<div>
+<span class="font-body text-[13px] text-[#ffffff] uppercase block font-normal">Model Verification SHA-256</span>
+<span class="font-mono text-[11px] text-[#8e9192] block select-all">
+                e89b1029c9b4e1837012d91bb50ad7a47efd083111b15743b35fbbce32109ab1
+              </span>
+</div>
+</div>
+<div class="flex items-center gap-3 w-full md:w-auto justify-end">
+<button class="w-full md:w-auto px-4 py-2 rounded-full border border-[#212327] bg-[#121316] font-body text-[13px] text-[#ffffff] hover:border-[#ffffff]/40 transition-colors flex items-center justify-center gap-2" type="button">
+<span class="material-symbols-outlined text-[16px] text-[#8e9192]">terminal</span>
+<span>CLI Pip Package</span>
+</button>
+<button class="w-full md:w-auto px-4 py-2 rounded-full bg-[#ffffff] text-[#0a0a0a] font-body text-[13px] hover:bg-[#dfe3e9] transition-colors flex items-center justify-center gap-2" type="button">
+<span class="material-symbols-outlined text-[16px]">download</span>
+<span>Export ONNX</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Persistent Dark Telemetry Footer -->
+<footer class="w-full border-t border-[#212327] bg-[#0a0a0a]">
+<div class="w-full max-w-[1440px] mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+<div class="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
+<span class="font-mono text-[10px] uppercase tracking-[0.14em] text-[#8e9192]">© 2025 PLANTCARE AI // EMPIRICAL PLANT PATHOLOGY AT EDGE SCALE</span>
+<span class="hidden sm:inline font-mono text-[#212327]">/</span>
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#121316] border border-[#212327] font-mono text-[#a2a6aa] text-[9px] uppercase">
+<span>ISO/IEC 22989 COMPLIANT</span>
+</div>
+</div>
+<div class="flex items-center gap-6 font-mono text-[11px] uppercase tracking-[0.12em] text-[#a2a6aa]">
+<a class="hover:text-[#ffffff] transition-colors" data-path="diagnose" href="#">Inference</a>
+<a class="hover:text-[#ffffff] transition-colors" data-path="disease-library" href="#">38-Class Taxonomy</a>
+<a class="hover:text-[#ffffff] transition-colors" data-path="model-and-benchmarks" href="#">INT8 Quant</a>
+<a class="hover:text-[#ffffff] transition-colors" data-path="admin-telemetry" href="#">Cluster Synapses</a>
+</div>
+</div>
+</footer>
+</body></html>

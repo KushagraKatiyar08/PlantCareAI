@@ -1,0 +1,15 @@
+﻿category_folder,images,baseline_correct,candidate_correct,baseline_top1_accuracy_percent,candidate_top1_accuracy_percent,change_percentage_points
+Corn Gray leaf spot,3,2,1,66.67,33.33,-33.33
+Corn leaf blight,9,3,4,33.33,44.44,11.11
+Corn rust leaf,10,1,9,10.0,90.0,80.0
+Potato leaf early blight,6,2,1,33.33,16.67,-16.67
+Potato leaf late blight,5,0,1,0.0,20.0,20.0
+Squash Powdery mildew leaf,6,2,5,33.33,83.33,50.0
+Tomato Early blight leaf,9,3,4,33.33,44.44,11.11
+Tomato Septoria leaf spot,10,1,5,10.0,50.0,40.0
+Tomato leaf bacterial spot,8,0,1,0.0,12.5,12.5
+Tomato leaf late blight,10,6,3,60.0,30.0,-30.0
+Tomato leaf mosaic virus,10,0,1,0.0,10.0,10.0
+Tomato leaf yellow virus,5,3,3,60.0,60.0,0.0
+Tomato mold leaf,6,0,2,0.0,33.33,33.33
+grape leaf black rot,8,4,6,50.0,75.0,25.0

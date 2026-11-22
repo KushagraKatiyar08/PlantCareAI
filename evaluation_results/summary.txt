@@ -1,0 +1,13 @@
+Model: neghani/plantvillage-mobilenetv2
+Revision: v1.0
+Device: CUDA GPU
+Images evaluated: 105
+Images skipped: 0
+Top-1 accuracy: 0.2571
+Top-3 accuracy: 0.5238
+Macro precision: 0.3280
+Macro recall: 0.2786
+Macro F1-score: 0.2623
+
+Evaluation is limited to the mapped categories and this test set.
+It does not establish general real-world diagnostic accuracy.

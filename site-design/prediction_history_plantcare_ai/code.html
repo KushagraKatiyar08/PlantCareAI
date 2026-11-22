@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="web_standard" name="shell-type"/>
+<title>PlantCare AI — Autonomous Crop Intelligence Platform</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    @layer base {
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: #0a0a0a !important;
+        color: #ffffff;
+      }
+      body {
+        overscroll-behavior: none;
+      }
+      main > :first-child {
+        margin-top: 0 !important;
+      }
+      main > :last-child {
+        margin-bottom: 0 !important;
+      }
+    }
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "hairline": "#212327",
+            "canvas-card": "#191919",
+            "canvas-soft": "#1a1c20",
+            "canvas-mid": "#363a3f",
+            "surface-dim": "#0a0a0a",
+            "surface-container-lowest": "#0a0a0a",
+            "surface-container-low": "#111111",
+            "surface-container": "#191919",
+            "surface-container-high": "#222222",
+            "surface-container-highest": "#2c2c2c",
+            "surface-bright": "#2c2c2c",
+            "outline": "#8e9192",
+            "outline-variant": "#444748",
+            "primary": "#ffffff",
+            "on-primary": "#0a0a0a",
+            "secondary": "#c3c7cd",
+            "body": "#dadbdf",
+            "on-surface": "#e5e2e1",
+            "on-surface-variant": "#8e9192",
+            "accent-emerald": "#34d399",
+            "accent-sunset": "#ff7a17",
+            "accent-breeze": "#a0c3ec",
+            "accent-twilight": "#c4b5fd"
+          },
+          borderRadius: {
+            "DEFAULT": "8px",
+            "sm": "4px",
+            "md": "8px",
+            "lg": "8px",
+            "xl": "12px",
+            "full": "9999px"
+          },
+          spacing: {
+            "xs": "4px",
+            "sm": "8px",
+            "md": "12px",
+            "lg": "16px",
+            "xl": "24px",
+            "2xl": "32px",
+            "3xl": "48px",
+            "4xl": "64px"
+          },
+          fontFamily: {
+            "body-md": ['"Inter", system-ui, -apple-system, sans-serif'],
+            "body-sm": ['"Inter", system-ui, -apple-system, sans-serif'],
+            "button-md": ['"Inter", system-ui, -apple-system, sans-serif'],
+            "caption-mono": ['"JetBrains Mono", monospace'],
+            "label-mono": ['"JetBrains Mono", monospace'],
+            "headline-lg": ['"Inter", system-ui, -apple-system, sans-serif'],
+            "headline-md": ['"Inter", system-ui, -apple-system, sans-serif'],
+            "headline-sm": ['"Inter", system-ui, -apple-system, sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-[#0a0a0a] text-white font-body-md text-[14px] antialiased selection:bg-white selection:text-black">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/95 backdrop-blur-md border-b border-hairline">
+<div class="h-16 w-full px-xl flex items-center justify-between gap-lg max-w-[1536px] mx-auto">
+<div class="flex items-center gap-md shrink-0">
+<span class="text-white text-[16px] select-none">✦</span>
+<div class="flex flex-col">
+<span class="font-button-md text-[13px] tracking-tight text-white uppercase font-normal">PlantCare AI</span>
+<span class="font-caption-mono text-[9px] uppercase tracking-[0.18em] text-outline leading-tight">AUTONOMOUS VISION INTELLIGENCE</span>
+</div>
+</div>
+<nav class="hidden lg:flex items-center bg-canvas-soft border border-hairline rounded-full p-[3px] gap-[2px]">
+<a class="px-md py-1 rounded-full font-button-md text-[13px] text-outline hover:text-white transition-colors" data-path="diagnose" href="#">Diagnose</a>
+<a aria-current="page" class="px-md py-1 rounded-full bg-white text-black font-button-md text-[13px] transition-colors" data-path="prediction-history" href="#">Prediction History</a>
+<a class="px-md py-1 rounded-full font-button-md text-[13px] text-outline hover:text-white transition-colors" data-path="disease-library" href="#">Disease Library</a>
+<a class="px-md py-1 rounded-full font-button-md text-[13px] text-outline hover:text-white transition-colors" data-path="model-and-benchmarks" href="#">Model &amp; Benchmarks</a>
+<a class="px-md py-1 rounded-full font-button-md text-[13px] text-outline hover:text-white transition-colors" data-path="admin-telemetry" href="#">Admin Telemetry</a>
+</nav>
+<div class="flex items-center gap-md shrink-0">
+<div class="hidden sm:flex items-center gap-xs px-md h-7 rounded-full bg-canvas-soft border border-hairline font-caption-mono text-[11px] text-outline">
+<span class="w-1.5 h-1.5 rounded-full bg-accent-emerald animate-pulse"></span>
+<span>NODE: US-WEST-04 // 18MS</span>
+</div>
+<div class="w-7 h-7 rounded-full bg-white flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-black text-[16px]">person</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="w-full pt-16 bg-[#0a0a0a] min-h-screen">
+<div class="w-full px-xl py-2xl flex flex-col gap-2xl max-w-[1536px] mx-auto">
+<!-- Eyebrow & Title Header -->
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-xl pb-md border-b border-hairline/60">
+<div class="flex flex-col gap-sm max-w-3xl">
+<div class="flex flex-wrap items-center gap-sm">
+<span class="font-caption-mono text-[11px] text-outline uppercase tracking-[0.16em]">
+              DIAGNOSTIC ARCHIVE // MULTI-TENANT AUDIT LOGS // SHA-256: 8F4A7C...E21A
+            </span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="px-sm py-[2px] rounded-full bg-canvas-soft border border-hairline text-accent-emerald font-caption-mono text-[10px] tracking-wider uppercase">
+              IMMUTABLE LEDGER
+            </span>
+</div>
+<h1 class="font-headline-lg text-[36px] lg:text-[44px] text-white tracking-tight leading-tight font-normal">
+            Prediction History
+          </h1>
+<p class="font-body-md text-[14px] text-outline max-w-2xl font-normal leading-relaxed">
+            Chronological ledger of vision model inference passes, out-of-distribution flags, and agronomist verification sign-offs.
+          </p>
+</div>
+<div class="flex items-center gap-md shrink-0">
+<div class="px-md py-1.5 rounded-full bg-canvas-soft border border-hairline text-outline font-caption-mono text-[11px] tracking-[0.12em] uppercase">
+            EPOCH: 2025.Q2 // INFERENCE ENGINE: V2.4.18
+          </div>
+<button aria-label="Refresh telemetry" class="w-8 h-8 rounded-full bg-canvas-card border border-hairline hover:bg-canvas-soft flex items-center justify-center text-outline hover:text-white transition-colors" type="button">
+<span class="material-symbols-outlined text-[17px]">refresh</span>
+</button>
+</div>
+</div>
+<!-- Summary KPI Metrics Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<!-- Card 1: Total Scans -->
+<div class="p-xl rounded-[8px] bg-[#191919] border border-hairline flex flex-col justify-between gap-lg relative overflow-hidden">
+<div class="flex items-start justify-between">
+<div class="flex flex-col gap-xs">
+<span class="font-caption-mono text-[11px] text-outline uppercase tracking-[0.14em]">TOTAL SCANS LOGGED</span>
+<span class="text-[32px] text-white font-normal tracking-tight">1,284</span>
+</div>
+<div class="w-8 h-8 rounded-full bg-canvas-soft border border-hairline flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[18px]">dataset</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-[12px]">
+<div class="flex items-center gap-xs text-accent-emerald">
+<span class="material-symbols-outlined text-[15px]">trending_up</span>
+<span>+14.2%</span>
+<span class="text-outline">vs prior 30d</span>
+</div>
+<span class="font-caption-mono text-outline text-[11px]">42.8 SCANS/DAY</span>
+</div>
+</div>
+<!-- Card 2: Guardrail Pass Rate -->
+<div class="p-xl rounded-[8px] bg-[#191919] border border-hairline flex flex-col justify-between gap-lg relative overflow-hidden">
+<div class="flex items-start justify-between">
+<div class="flex flex-col gap-xs">
+<span class="font-caption-mono text-[11px] text-outline uppercase tracking-[0.14em]">GUARDRAIL PASS RATE</span>
+<div class="flex items-baseline gap-xs">
+<span class="text-[32px] text-white font-normal tracking-tight">96.4%</span>
+<span class="font-caption-mono text-[12px] text-outline ml-1">1,238 / 1,284</span>
+</div>
+</div>
+<div class="w-8 h-8 rounded-full bg-canvas-soft border border-hairline flex items-center justify-center text-accent-emerald">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+</div>
+</div>
+<div class="flex flex-col gap-xs">
+<div class="w-full bg-canvas-soft rounded-full h-[3px] overflow-hidden">
+<div class="bg-accent-emerald h-full rounded-full" style="width: 96.4%"></div>
+</div>
+<span class="font-caption-mono text-outline text-[11px]">CONFIDENCE &gt; 0.85 NOMINAL BOUND</span>
+</div>
+</div>
+<!-- Card 3: Escalated / Flagged -->
+<div class="p-xl rounded-[8px] bg-[#191919] border border-hairline flex flex-col justify-between gap-lg relative overflow-hidden">
+<div class="flex items-start justify-between">
+<div class="flex flex-col gap-xs">
+<span class="font-caption-mono text-[11px] text-outline uppercase tracking-[0.14em]">ESCALATED / FLAGGED</span>
+<div class="flex items-baseline gap-xs">
+<span class="text-[32px] text-accent-sunset font-normal tracking-tight">46</span>
+<span class="font-caption-mono text-[12px] text-outline ml-1">3.6% OF INFERENCES</span>
+</div>
+</div>
+<div class="w-8 h-8 rounded-full bg-canvas-soft border border-hairline flex items-center justify-center text-accent-sunset">
+<span class="material-symbols-outlined text-[18px]">warning</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-[12px]">
+<div class="flex items-center gap-xs text-accent-sunset">
+<span class="material-symbols-outlined text-[15px]">priority_high</span>
+<span>MANUAL ESCALATION</span>
+</div>
+<span class="font-caption-mono text-outline text-[11px]">ROUTED TO LAB</span>
+</div>
+</div>
+</div>
+<!-- Filter & Control Toolbar -->
+<div class="p-md rounded-[8px] bg-[#191919] border border-hairline flex flex-col xl:flex-row items-stretch xl:items-center justify-between gap-md">
+<!-- Search Input -->
+<div class="relative flex-1 min-w-[280px]">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
+<input class="w-full h-9 pl-3xl pr-md rounded-[8px] bg-canvas-soft border border-hairline text-white placeholder:text-outline font-body-sm text-[13px] focus:outline-none focus:border-outline" placeholder="Search Specimen ID, pathogen, or cultivar..." type="text"/>
+</div>
+<!-- Filter Pill Group -->
+<div class="flex flex-wrap items-center gap-xs overflow-x-auto pb-xs xl:pb-0 scrollbar-none">
+<button class="px-md h-7 rounded-full bg-white text-black font-button-md text-[12px] transition-colors" type="button">
+            All Scans (1,284)
+          </button>
+<button class="px-md h-7 rounded-full bg-canvas-soft border border-hairline hover:border-outline text-outline hover:text-white font-button-md text-[12px] transition-colors" type="button">
+            Fungal (742)
+          </button>
+<button class="px-md h-7 rounded-full bg-canvas-soft border border-hairline hover:border-outline text-outline hover:text-white font-button-md text-[12px] transition-colors" type="button">
+            Bacterial (310)
+          </button>
+<button class="px-md h-7 rounded-full bg-canvas-soft border border-hairline hover:border-outline text-outline hover:text-white font-button-md text-[12px] transition-colors" type="button">
+            Viral (186)
+          </button>
+<button class="px-md h-7 rounded-full bg-canvas-soft border border-hairline hover:border-accent-sunset/60 text-accent-sunset font-button-md text-[12px] transition-colors flex items-center gap-xs" type="button">
+<span class="w-1.5 h-1.5 rounded-full bg-accent-sunset animate-pulse"></span>
+            Flagged (46)
+          </button>
+</div>
+<!-- Action Buttons -->
+<div class="flex items-center gap-sm shrink-0">
+<button class="px-md h-7 rounded-full bg-canvas-soft border border-hairline hover:bg-surface-bright text-white font-button-md text-[12px] transition-colors flex items-center gap-xs" type="button">
+<span class="material-symbols-outlined text-[15px]">file_download</span>
+<span>Export Telemetry (CSV)</span>
+</button>
+<button aria-label="Filters" class="w-7 h-7 rounded-full bg-canvas-soft border border-hairline hover:bg-surface-bright text-outline hover:text-white flex items-center justify-center transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">tune</span>
+</button>
+</div>
+</div>
+<!-- Diagnostic Ledger Data Table -->
+<div class="w-full rounded-[8px] bg-[#191919] border border-hairline overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-canvas-soft/80 border-b border-hairline text-outline font-caption-mono text-[11px] tracking-[0.14em] uppercase">
+<th class="py-md px-lg font-normal">TIMESTAMP (UTC)</th>
+<th class="py-md px-lg font-normal">SPECIMEN ID</th>
+<th class="py-md px-lg font-normal">CROP &amp; PATHOLOGY CLASSIFICATION</th>
+<th class="py-md px-lg font-normal">INFERENCE SCORE</th>
+<th class="py-md px-lg font-normal">GUARDRAIL STATUS</th>
+<th class="py-md px-lg text-right font-normal">ACTION</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-hairline font-body-sm text-[13px]">
+<!-- Row 1: Healthy Tomato Leaf -->
+<tr class="hover:bg-canvas-soft/50 transition-colors">
+<td class="py-md px-lg whitespace-nowrap">
+<div class="flex flex-col">
+<span class="text-white font-caption-mono text-[11px]">2025-05-18 14:32:09</span>
+<span class="text-outline text-[11px]">UTC-00 // INGEST #09218</span>
+</div>
+</td>
+<td class="py-md px-lg whitespace-nowrap">
+<span class="px-md py-[2px] rounded-full bg-canvas-soft border border-hairline text-white font-caption-mono text-[11px] tracking-wider uppercase">
+                    SOL-8821-A
+                  </span>
+</td>
+<td class="py-md px-lg">
+<div class="flex items-center gap-md">
+<div class="w-9 h-9 rounded-[4px] bg-canvas-soft border border-hairline shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Microscopic high magnification leaf surface photo of Solanum lycopersicum displaying healthy deep green chlorophyll veins with soft laboratory studio lighting and sharp texture fidelity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzrSsDW6Vn9OoDQ63qmLIPzTKrfwGjD_G0BK42harH6YkPiFlXc8IvI_LUsi8hDnJfLmbM3QKyQqshyIquGJhaGbS3RX2QNNItad549K8dAaYO8H4UgUriEEO_5lLdpTGfdH6c_nOi4y3pmZ8qaF8Cn4YOPSAU6Tvw8lvg8_JsIhqFAIBwvtF2xeQgzEqK5t3XYBDI0Ye0YsUE1nO7Q-bc4gLN3X3ywlClKUDsXQQE"/>
+</div>
+<div class="flex flex-col">
+<span class="text-white font-normal text-[13px]">Tomato (Solanum lycopersicum)</span>
+<span class="text-outline text-[11px]">Healthy Tissue // No Pathogen Detected</span>
+</div>
+</div>
+</td>
+<td class="py-md px-lg whitespace-nowrap">
+<div class="flex flex-col gap-xs w-36">
+<div class="flex justify-between items-baseline font-caption-mono text-[11px]">
+<span class="text-white">0.9942</span>
+<span class="text-outline text-[10px]">p &lt; 0.001</span>
+</div>
+<div class="w-full bg-canvas-soft rounded-full h-[3px] overflow-hidden">
+<div class="bg-accent-emerald h-full rounded-full" style="width: 99.4%"></div>
+</div>
+</div>
+</td>
+<td class="py-md px-lg whitespace-nowrap">
+<span class="inline-flex items-center gap-xs px-md py-[2px] rounded-full bg-canvas-soft border border-hairline text-accent-emerald font-caption-mono text-[10px] uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-accent-emerald"></span>
+                    PASSED
+                  </span>
+</td>
+<td class="py-md px-lg whitespace-nowrap text-right">
+<button class="px-md py-1 rounded-full bg-canvas-soft border border-hairline hover:bg-canvas-card hover:border-outline text-white font-button-md text-[12px] transition-colors" type="button">
+                    Review
+                  </button>
+</td>
+</tr>
+<!-- Row 2: Wheat Stripe Rust -->
+<tr class="hover:bg-canvas-soft/50 transition-colors">
+<td class="py-md px-lg whitespace-nowrap">
+<div class="flex flex-col">
+<span class="text-white font-caption-mono text-[11px]">2025-05-18 14:28:44</span>
+<span class="text-outline text-[11px]">UTC-00 // INGEST #09217</span>
+</div>
+</td>
+<td class="py-md px-lg whitespace-nowrap">
+<span class="px-md py-[2px] rounded-full bg-canvas-soft border border-hairline text-white font-caption-mono text-[11px] tracking-wider uppercase">
+                    TRIT-3092-C
+                  </span>
+</td>
+<td class="py-md px-lg">
+<div class="flex items-center gap-md">
+<div class="w-9 h-9 rounded-[4px] bg-canvas-soft border border-hairline shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Agronomic diagnostic macro photography showing wheat blade infected with yellow-orange pustules of stripe rust Puccinia striiformis on dark laboratory bench." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4viDPnF0mz7Yn5fxEJViW5VfHdudMD1oXTN8yTAEfJ4FAKpN3GFqlxhZzzWdR-h3NNijwF__xKKo3zikeJNe2Fn6h8ylymEIsF_6NC4IPTRZOljfILWrIALwQHXb8RdvqRSLrbxvuDy2TuM4CPundjVA1-1jb782FsAEpj28DWJ6HyQtw1AUQ3Ey_qbEpqPrrDguH55lw2fdK9a09OdFSmDhL6YkgXrjRvmOyCit8"/>
+</div>
+<div class="flex flex-col">
+<span class="text-white font-normal text-[13px]">Common Wheat (Triticum aestivum)</span>
+<span class="text-accent-sunset text-[11px]">Puccinia striiformis (Stripe Rust)</span>
+</div>
+</div>
+</td>
+<td class="py-md px-lg whitespace-nowrap">
+<div class="flex flex-col gap-xs w-36">
+<div class="flex justify-between items-baseline font-caption-mono text-[11px]">
+<span class="text-white">0.9781</span>
+<span class="text-outline text-[10px]">p = 0.002</span>
+</div>
+<div class="w-full bg-canvas-soft rounded-full h-[3px] overflow-hidden">
+<div class="bg-accent-sunset h-full rounded-full" style="width: 97.8%"></div>
+</div>
+</div>
+</td>
+<td class="py-md px-lg whitespace-nowrap">
+<span class="inline-flex items-center gap-xs px-md py-[2px] rounded-full bg-canvas-soft border border-hairline text-accent-emerald font-caption-mono text-[10px] uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-accent-emerald"></span>
+                    PASSED
+                  </span>
+</td>
+<td class="py-md px-lg whitespace-nowrap text-right">
+<button class="px-md py-1 rounded-full bg-canvas-soft border border-hairline hover:bg-canvas-card hover:border-outline text-white font-button-md text-[12px] transition-colors" type="button">
+                    View PDF
+                  </button>
+</td>
+</tr>
+<!-- Row 3: Bell Pepper Bacterial Spot (Flagged: Low Margin) -->
+<tr class="hover:bg-canvas-soft/50 transition-colors bg-canvas-soft/20">
+<td class="py-md px-lg whitespace-nowrap">
+<div class="flex flex-col">
+<span class="text-white font-caption-mono text-[11px]">2025-05-18 14:19:12</span>
+<span class="text-outline text-[11px]">UTC-00 // INGEST #09216</span>
+</div>
+</td>
+<td class="py-md px-lg whitespace-nowrap">
+<span class="px-md py-[2px] rounded-full bg-canvas-soft border border-hairline text-accent-sunset font-caption-mono text-[11px] tracking-wider uppercase">
+                    CAP-4410-B
+                  </span>
+</td>
+<td class="py-md px-lg">
+<div class="flex items-center gap-md">
+<div class="w-9 h-9 rounded-[4px] bg-canvas-soft border border-hairline shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Plant pathology close up specimen of bell pepper foliage with dark water-soaked lesions of Xanthomonas campestris under scientific ring lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFl7pTwB33yteNU-5tPnK1k7JseTnhvPPjzHKUsaLl3jrgkJPvi_Yi66H8VsnVnS0NQZJV3-2fonFFMqxdQ3HRbciooEjkKMdhwhwjGf1u3s2YdAuStWp6T6CYDj8h12wLJ9bdPzdp0tUgj4RejiQWXb-UX3sUPVt8zje0ZoNObDICswMXuzfBX4IcREwOGxhRcM_zWaTsHnlLIt8U-C6mg7jl39u1JzX12NQvx964"/>
+</div>
+<div class="flex flex-col">
+<span class="text-white font-normal text-[13px]">Bell Pepper (Capsicum annuum)</span>
+<span class="text-outline text-[11px]">Xanthomonas euvesicatoria (Bacterial Spot)</span>
+</div>
+</div>
+</td>
+<td class="py-md px-lg whitespace-nowrap">
+<div class="flex flex-col gap-xs w-36">
+<div class="flex justify-between items-baseline font-caption-mono text-[11px]">
+<span class="text-accent-sunset">0.7104</span>
+<span class="text-outline text-[10px]">p = 0.084</span>
+</div>
+<div class="w-full bg-canvas-soft rounded-full h-[3px] overflow-hidden">
+<div class="bg-accent-sunset h-full rounded-full" style="width: 71.0%"></div>
+</div>
+</div>
+</td>
+<td class="py-md px-lg whitespace-nowrap">
+<span class="inline-flex items-center gap-xs px-md py-[2px] rounded-full bg-canvas-soft border border-hairline text-accent-sunset font-caption-mono text-[10px] uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-accent-sunset animate-pulse"></span>
+                    FLAGGED: LOW MARGIN
+                  </span>
+</td>
+<td class="py-md px-lg whitespace-nowrap text-right">
+<button class="px-md py-1 rounded-full bg-white text-black font-button-md text-[12px] transition-colors" type="button">
+                    Review
+                  </button>
+</td>
+</tr>
+<!-- Row 4: Canola Blackleg -->
+<tr class="hover:bg-canvas-soft/50 transition-colors">
+<td class="py-md px-lg whitespace-nowrap">
+<div class="flex flex-col">
+<span class="text-white font-caption-mono text-[11px]">2025-05-18 14:11:03</span>
+<span class="text-outline text-[11px]">UTC-00 // INGEST #09215</span>
+</div>
+</td>
+<td class="py-md px-lg whitespace-nowrap">
+<span class="px-md py-[2px] rounded-full bg-canvas-soft border border-hairline text-white font-caption-mono text-[11px] tracking-wider uppercase">
+                    BRA-1920-D
+                  </span>
+</td>
+<td class="py-md px-lg">
+<div class="flex items-center gap-md">
+<div class="w-9 h-9 rounded-[4px] bg-canvas-soft border border-hairline shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Agronomic field sample of Brassica napus leaf with necrotic ash-gray circular lesions containing minute black pycnidia fungal bodies." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAm2KG74qFc5h69FUI4gHjaB-upVAHKxu5OkfblCVUFGrKmX1Zy1BSRIr8l_rVOzkdKXNDhEgppS6jqdUVgl-27BJCIVH4YyFU4Am_BUUiKNlu-X7n_jbsiSjo0P1cyOOv_LZVOdC44QQoY3_YP7JGiEfwO0fK9rJRO_ScalUh5CgnFanKyFGGBkfGt5eK4Z4DH7xfTzPCI0NOocj1fVS10f-vecfdy0-dqrC54cNOT"/>
+</div>
+<div class="flex flex-col">
+<span class="text-white font-normal text-[13px]">Rapeseed / Canola (Brassica napus)</span>
+<span class="text-accent-sunset text-[11px]">Leptosphaeria maculans (Blackleg)</span>
+</div>
+</div>
+</td>
+<td class="py-md px-lg whitespace-nowrap">
+<div class="flex flex-col gap-xs w-36">
+<div class="flex justify-between items-baseline font-caption-mono text-[11px]">
+<span class="text-white">0.9634</span>
+<span class="text-outline text-[10px]">p &lt; 0.001</span>
+</div>
+<div class="w-full bg-canvas-soft rounded-full h-[3px] overflow-hidden">
+<div class="bg-accent-sunset h-full rounded-full" style="width: 96.3%"></div>
+</div>
+</div>
+</td>
+<td class="py-md px-lg whitespace-nowrap">
+<span class="inline-flex items-center gap-xs px-md py-[2px] rounded-full bg-canvas-soft border border-hairline text-accent-emerald font-caption-mono text-[10px] uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-accent-emerald"></span>
+                    PASSED
+                  </span>
+</td>
+<td class="py-md px-lg whitespace-nowrap text-right">
+<button class="px-md py-1 rounded-full bg-canvas-soft border border-hairline hover:bg-canvas-card hover:border-outline text-white font-button-md text-[12px] transition-colors" type="button">
+                    View PDF
+                  </button>
+</td>
+</tr>
+<!-- Row 5: Grapevine Fanleaf Virus (Flagged: OOD Confidence) -->
+<tr class="hover:bg-canvas-soft/50 transition-colors bg-canvas-soft/20">
+<td class="py-md px-lg whitespace-nowrap">
+<div class="flex flex-col">
+<span class="text-white font-caption-mono text-[11px]">2025-05-18 13:58:50</span>
+<span class="text-outline text-[11px]">UTC-00 // INGEST #09214</span>
+</div>
+</td>
+<td class="py-md px-lg whitespace-nowrap">
+<span class="px-md py-[2px] rounded-full bg-canvas-soft border border-hairline text-accent-twilight font-caption-mono text-[11px] tracking-wider uppercase">
+                    VIT-6631-A
+                  </span>
+</td>
+<td class="py-md px-lg">
+<div class="flex items-center gap-md">
+<div class="w-9 h-9 rounded-[4px] bg-canvas-soft border border-hairline shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Microscopic botanical assay of Vitis vinifera grapevine showing chlorotic yellow vein mosaic banding and asymmetrical leaf lobes against clean dark background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFEMLs_-GI8wvK3enBdW5XugIPiH_kVbJ-C9hqjjM65VddSDUo19J6UT-BepnL3PDvE2eXPymIFllKKKyfSAo6tv7ye4STg8eD-gWLGzyzWZVgejgYYr4fjMZHE0lMGNaq7D1dnjzDAoKLcvuMfnr6vAq3oLLFOZG-nC8ldQ7fCCFVO0p6FFhfZt9kmKidC-81VcUZIaOuqz42a5XwDnciR_QefMf81txlsbWNgrIY"/>
+</div>
+<div class="flex flex-col">
+<span class="text-white font-normal text-[13px]">Grapevine (Vitis vinifera)</span>
+<span class="text-accent-twilight text-[11px]">Grapevine fanleaf virus (GFLV)</span>
+</div>
+</div>
+</td>
+<td class="py-md px-lg whitespace-nowrap">
+<div class="flex flex-col gap-xs w-36">
+<div class="flex justify-between items-baseline font-caption-mono text-[11px]">
+<span class="text-accent-sunset">0.6418</span>
+<span class="text-outline text-[10px]">p = 0.142</span>
+</div>
+<div class="w-full bg-canvas-soft rounded-full h-[3px] overflow-hidden">
+<div class="bg-accent-twilight h-full rounded-full" style="width: 64.1%"></div>
+</div>
+</div>
+</td>
+<td class="py-md px-lg whitespace-nowrap">
+<span class="inline-flex items-center gap-xs px-md py-[2px] rounded-full bg-canvas-soft border border-hairline text-accent-sunset font-caption-mono text-[10px] uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-accent-sunset animate-pulse"></span>
+                    FLAGGED: OOD CONFIDENCE
+                  </span>
+</td>
+<td class="py-md px-lg whitespace-nowrap text-right">
+<button class="px-md py-1 rounded-full bg-white text-black font-button-md text-[12px] transition-colors" type="button">
+                    Review
+                  </button>
+</td>
+</tr>
+<!-- Row 6: Strawberry Angular Leaf Spot -->
+<tr class="hover:bg-canvas-soft/50 transition-colors">
+<td class="py-md px-lg whitespace-nowrap">
+<div class="flex flex-col">
+<span class="text-white font-caption-mono text-[11px]">2025-05-18 13:42:19</span>
+<span class="text-outline text-[11px]">UTC-00 // INGEST #09213</span>
+</div>
+</td>
+<td class="py-md px-lg whitespace-nowrap">
+<span class="px-md py-[2px] rounded-full bg-canvas-soft border border-hairline text-white font-caption-mono text-[11px] tracking-wider uppercase">
+                    FRA-5104-F
+                  </span>
+</td>
+<td class="py-md px-lg">
+<div class="flex items-center gap-md">
+<div class="w-9 h-9 rounded-[4px] bg-canvas-soft border border-hairline shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Agronomic close inspection of strawberry foliage Fragaria ananassa with angular water-soaked lesions bounded by minor veinlets, clinical contrast illumination." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWJ7GSYvfar0rJxQIypVBf4q8xqZh5DhxZ-n4UU89erW2YSS2mEwcPhfGgBb8XvAV1ejDa24soMdqtm71xvj4Xlnaw6Y1R7mDttO4NEgHbKnR48R1I7tJwL8qAcGodWDJ4-g-caPYIZywzPXPplUmcqRa7fG9qHg7P2YyRRGR2SSUmQp4cqnO6Y4URHgc5Uh4WcuJmtvGJGfU5DYFZq5JGtTObwRfyGGC8xQZtqCLZ"/>
+</div>
+<div class="flex flex-col">
+<span class="text-white font-normal text-[13px]">Garden Strawberry (Fragaria × ananassa)</span>
+<span class="text-accent-breeze text-[11px]">Xanthomonas fragariae (Angular Leaf Spot)</span>
+</div>
+</div>
+</td>
+<td class="py-md px-lg whitespace-nowrap">
+<div class="flex flex-col gap-xs w-36">
+<div class="flex justify-between items-baseline font-caption-mono text-[11px]">
+<span class="text-white">0.9810</span>
+<span class="text-outline text-[10px]">p &lt; 0.001</span>
+</div>
+<div class="w-full bg-canvas-soft rounded-full h-[3px] overflow-hidden">
+<div class="bg-accent-breeze h-full rounded-full" style="width: 98.1%"></div>
+</div>
+</div>
+</td>
+<td class="py-md px-lg whitespace-nowrap">
+<span class="inline-flex items-center gap-xs px-md py-[2px] rounded-full bg-canvas-soft border border-hairline text-accent-emerald font-caption-mono text-[10px] uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-accent-emerald"></span>
+                    PASSED
+                  </span>
+</td>
+<td class="py-md px-lg whitespace-nowrap text-right">
+<button class="px-md py-1 rounded-full bg-canvas-soft border border-hairline hover:bg-canvas-card hover:border-outline text-white font-button-md text-[12px] transition-colors" type="button">
+                    View PDF
+                  </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Pagination & Status Cluster Footer -->
+<div class="flex flex-col md:flex-row items-center justify-between gap-lg pb-md">
+<div class="flex items-center gap-md">
+<span class="font-caption-mono text-[11px] text-outline uppercase tracking-wider">
+            Showing 6 of 1,284 diagnostic records // Query exec: 14ms
+          </span>
+</div>
+<!-- Pill Pagination -->
+<div class="flex items-center gap-xs">
+<button class="px-md h-7 rounded-full bg-canvas-card border border-hairline hover:bg-canvas-soft text-outline hover:text-white font-button-md text-[12px] transition-colors flex items-center gap-xs disabled:opacity-40" disabled="" type="button">
+<span class="material-symbols-outlined text-[15px]">chevron_left</span>
+<span>Prev</span>
+</button>
+<button class="w-7 h-7 rounded-full bg-white text-black font-button-md text-[12px] flex items-center justify-center" type="button">
+            1
+          </button>
+<button class="w-7 h-7 rounded-full bg-canvas-card border border-hairline hover:bg-canvas-soft text-outline hover:text-white font-button-md text-[12px] flex items-center justify-center transition-colors" type="button">
+            2
+          </button>
+<button class="w-7 h-7 rounded-full bg-canvas-card border border-hairline hover:bg-canvas-soft text-outline hover:text-white font-button-md text-[12px] flex items-center justify-center transition-colors" type="button">
+            3
+          </button>
+<span class="px-xs text-outline font-caption-mono text-[12px]">...</span>
+<button class="w-7 h-7 rounded-full bg-canvas-card border border-hairline hover:bg-canvas-soft text-outline hover:text-white font-button-md text-[12px] flex items-center justify-center transition-colors" type="button">
+            214
+          </button>
+<button class="px-md h-7 rounded-full bg-canvas-card border border-hairline hover:bg-canvas-soft text-outline hover:text-white font-button-md text-[12px] transition-colors flex items-center gap-xs" type="button">
+<span>Next</span>
+<span class="material-symbols-outlined text-[15px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Edge Cluster Status Ribbon -->
+<div class="p-md rounded-[8px] bg-canvas-soft border border-hairline flex flex-wrap items-center justify-between gap-md font-caption-mono text-outline text-[11px] uppercase tracking-[0.14em]">
+<div class="flex items-center gap-md">
+<span class="inline-flex items-center gap-xs text-accent-emerald">
+<span class="w-1.5 h-1.5 rounded-full bg-accent-emerald animate-ping"></span>
+            EDGE CLUSTER: US-WEST-04
+          </span>
+<span class="hidden sm:inline text-hairline">|</span>
+<span>LOCAL WAL SYNCED TO SECURE VAULT</span>
+</div>
+<div class="flex items-center gap-md">
+<span>NOMINAL QUANT: INT8</span>
+<span class="hidden sm:inline text-hairline">|</span>
+<span class="text-white">MEAN LATENCY: 22.4 MS</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Persistent Dark Telemetry Footer -->
+<footer class="w-full border-t border-hairline bg-[#0a0a0a]">
+<div class="w-full px-xl py-lg flex flex-col md:flex-row items-center justify-between gap-lg max-w-[1536px] mx-auto">
+<div class="flex flex-col sm:flex-row items-center gap-md text-center sm:text-left">
+<span class="font-caption-mono uppercase tracking-[0.14em] text-outline text-[11px]">
+          © 2025 PLANTCARE AI // EMPIRICAL PLANT PATHOLOGY AT EDGE SCALE
+        </span>
+<span class="hidden sm:inline font-caption-mono text-hairline">/</span>
+<div class="inline-flex items-center gap-xs px-sm h-5 rounded-full bg-canvas-soft border border-hairline font-caption-mono text-outline text-[10px] uppercase">
+<span>ISO/IEC 22989 COMPLIANT</span>
+</div>
+</div>
+<div class="flex items-center gap-lg font-caption-mono uppercase tracking-[0.12em] text-outline text-[11px]">
+<a class="hover:text-white transition-colors" data-path="diagnose" href="#">Inference</a>
+<a class="hover:text-white transition-colors" data-path="disease-library" href="#">38-Class Taxonomy</a>
+<a class="hover:text-white transition-colors" data-path="model-and-benchmarks" href="#">INT8 Quant</a>
+<a class="hover:text-white transition-colors" data-path="admin-telemetry" href="#">Cluster Synapses</a>
+</div>
+</div>
+</footer>
+</body></html>

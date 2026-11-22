@@ -1,0 +1,20 @@
+                            precision    recall  f1-score   support
+
+       Corn Gray leaf spot       0.17      0.67      0.27         3
+          Corn leaf blight       0.30      0.33      0.32         9
+            Corn rust leaf       0.33      0.10      0.15        10
+      grape leaf black rot       0.31      0.50      0.38         8
+  Potato leaf early blight       1.00      0.33      0.50         6
+   Potato leaf late blight       0.00      0.00      0.00         5
+Squash Powdery mildew leaf       0.50      0.33      0.40         6
+  Tomato Early blight leaf       0.27      0.33      0.30         9
+Tomato leaf bacterial spot       0.00      0.00      0.00         8
+   Tomato leaf late blight       0.46      0.60      0.52        10
+  Tomato leaf mosaic virus       0.00      0.00      0.00        10
+  Tomato leaf yellow virus       0.75      0.60      0.67         5
+          Tomato mold leaf       0.00      0.00      0.00         6
+ Tomato Septoria leaf spot       0.50      0.10      0.17        10
+
+                 micro avg       0.35      0.26      0.30       105
+                 macro avg       0.33      0.28      0.26       105
+              weighted avg       0.32      0.26      0.25       105

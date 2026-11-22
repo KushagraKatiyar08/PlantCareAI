@@ -1,0 +1,1214 @@
+/* =====================================================================
+   PLANTCARE AI — xAI FRONTIER DESIGN SYSTEM STYLESHEET
+   Built exactly according to site-design/ (Google Stitch specifications)
+   Strict near-black canvas (#0a0a0a), hairline borders (#212327),
+   Inter & JetBrains Mono weight-400 typography, uppercase mono eyebrows,
+   9999px pills, reticle target viewfinder, and cosmic accents.
+   ===================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');
+
+:root {
+  /* Surface & Canvas Tokens */
+  --color-canvas: #0a0a0a;
+  --color-canvas-soft: #141414;
+  --color-canvas-card: #191919;
+  --color-canvas-high: #202020;
+  --color-canvas-highest: #282828;
+  --color-canvas-mid: #212327;
+  --color-hairline: #212327;
+  --color-hairline-translucent: rgba(255, 255, 255, 0.22);
+  --color-hairline-hover: rgba(255, 255, 255, 0.6);
+
+  /* Typography & Foreground Tokens */
+  --color-primary: #ffffff;
+  --color-on-primary: #0a0a0a;
+  --color-ink: #ffffff;
+  --color-body: #dadbdf;
+  --color-body-mid: #7d8187;
+  --color-outline: #8e9192;
+  --color-outline-variant: #34383c;
+
+  /* Cosmic Accent Tokens */
+  --color-accent-sunset: #ff7a17;
+  --color-accent-sunset-soft: #ffc285;
+  --color-accent-dusk: #7c3aed;
+  --color-accent-twilight: #c4b5fd;
+  --color-accent-breeze: #a0c3ec;
+  --color-accent-emerald: #34d399;
+
+  /* Radii Scale */
+  --rounded-none: 0px;
+  --rounded-sm: 8px;
+  --rounded-pill: 9999px;
+  --rounded-full: 9999px;
+
+  /* Typography Stacks */
+  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* Base Body and App Background */
+html, body, .stApp {
+  margin: 0 !important;
+  padding: 0 !important;
+  background-color: var(--color-canvas) !important;
+  color: var(--color-ink) !important;
+  font-family: var(--font-sans) !important;
+  font-weight: 400 !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Strict Zero Shadows Policy across the entire system */
+* {
+  box-shadow: none !important;
+}
+
+/* Hide default Streamlit toolbar header and left multipage navigation sidebar */
+header[data-testid="stHeader"] {
+  display: none !important;
+}
+
+[data-testid="stSidebar"],
+[data-testid="stSidebarNav"],
+[data-testid="stSidebarNavItems"],
+[data-testid="stSidebarNavSeparator"],
+[data-testid="stSidebarCollapsedControl"],
+[data-testid="collapsedControl"],
+section[data-testid="stSidebar"] {
+  display: none !important;
+  visibility: hidden !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  pointer-events: none !important;
+}
+
+/* Hide default scrollbars */
+::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* Container Band (max-width 1600px matching site-design) */
+.block-container {
+  max-width: 1536px !important;
+  padding-top: 1rem !important;
+  padding-bottom: 4rem !important;
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+  background-color: var(--color-canvas) !important;
+}
+
+/* Typography Hierarchy: Strictly Weight 400 */
+h1, .stHeading h1 {
+  font-family: var(--font-sans) !important;
+  color: var(--color-ink) !important;
+  font-weight: 400 !important;
+  letter-spacing: -1.8px !important;
+  line-height: 1.05 !important;
+}
+
+h2, .stHeading h2 {
+  font-family: var(--font-sans) !important;
+  color: var(--color-ink) !important;
+  font-weight: 400 !important;
+  letter-spacing: -1.2px !important;
+  line-height: 1.15 !important;
+}
+
+h3, .stHeading h3 {
+  font-family: var(--font-sans) !important;
+  color: var(--color-ink) !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.6px !important;
+  line-height: 1.25 !important;
+}
+
+p, span, label, div {
+  font-family: var(--font-sans);
+  font-weight: 400;
+}
+
+p {
+  color: var(--color-body);
+  line-height: 1.6;
+  font-size: 14.5px;
+}
+
+/* Material Symbols Outlined & Rounded Font Ligatures */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined' !important;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  font-feature-settings: 'liga' 1;
+  -webkit-font-smoothing: antialiased;
+  vertical-align: middle;
+}
+
+.material-symbols-rounded,
+[data-testid="stIconMaterial"],
+span[data-testid="stIconMaterial"],
+[data-testid="stTextInput"] button span,
+[data-testid="stTextInput"] button [data-testid="stIconMaterial"],
+button[aria-label*="password" i] span,
+button[aria-label*="password" i] [data-testid="stIconMaterial"],
+button[aria-label*="Password" i] span,
+button[aria-label*="Password" i] [data-testid="stIconMaterial"],
+button[aria-label*="visibility" i] span,
+button[aria-label*="visibility" i] [data-testid="stIconMaterial"] {
+  font-family: 'Material Symbols Rounded', 'Material Symbols Outlined' !important;
+  font-weight: normal !important;
+  font-style: normal !important;
+  font-size: 18px !important;
+  line-height: 1 !important;
+  letter-spacing: normal !important;
+  text-transform: none !important;
+  display: inline-block !important;
+  white-space: nowrap !important;
+  word-wrap: normal !important;
+  direction: ltr !important;
+  -webkit-font-feature-settings: 'liga' !important;
+  font-feature-settings: 'liga' 1 !important;
+  -webkit-font-smoothing: antialiased !important;
+  vertical-align: middle !important;
+}
+
+/* Password Toggle Eye Button inside Inputs */
+[data-testid="stTextInput"] button {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: var(--color-outline) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 8px !important;
+  min-height: auto !important;
+  cursor: pointer !important;
+}
+
+[data-testid="stTextInput"] button:hover {
+  color: var(--color-ink) !important;
+}
+
+/* Tracked Monospace Eyebrow / Label (xAI Frontier Signature) */
+.pc-eyebrow, .font-caption-mono, .font-label-mono {
+  font-family: var(--font-mono) !important;
+  font-size: 11px !important;
+  font-weight: 400 !important;
+  line-height: 18px !important;
+  letter-spacing: 1.4px !important;
+  text-transform: uppercase !important;
+  color: var(--color-outline) !important;
+}
+
+/* Animations */
+@keyframes pcFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scan-line {
+  0% { top: 0%; opacity: 0.9; }
+  50% { opacity: 1; }
+  100% { top: 100%; opacity: 0.9; }
+}
+
+@keyframes pcScanBeam {
+  0% { top: 0%; opacity: 0.9; }
+  50% { top: 96%; opacity: 1; }
+  100% { top: 0%; opacity: 0.9; }
+}
+
+.animate-scan {
+  animation: scan-line 3s linear infinite;
+}
+
+/* =====================================================================
+   BUTTON & INTERACTIVE SYSTEM: 9999px PILL ONLY, NO SHADOWS
+   ===================================================================== */
+
+button,
+button p,
+button span,
+button div,
+[data-testid="stSegmentedControl"] button,
+[data-testid="stSegmentedControl"] button p,
+[data-testid="stSegmentedControl"] button span,
+[data-testid="stPills"] button,
+[data-testid="stPills"] button p,
+[data-testid="stPills"] button span {
+  font-family: var(--font-sans) !important;
+  font-weight: 400 !important;
+}
+
+/* Primary Button: Rare White-Filled Pill */
+div.stButton > button[kind="primary"],
+div.stButton > button[data-testid="baseButton-primary"],
+.btn-primary {
+  background-color: var(--color-primary) !important;
+  color: var(--color-on-primary) !important;
+  border-radius: var(--rounded-pill) !important;
+  border: 1px solid var(--color-primary) !important;
+  padding: 8px 20px !important;
+  font-size: 13.5px !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.1px !important;
+  white-space: nowrap !important;
+  box-shadow: none !important;
+  transition: opacity 0.15s ease, background-color 0.15s ease !important;
+}
+
+div.stButton > button[kind="primary"] *,
+div.stButton > button[data-testid="baseButton-primary"] * {
+  color: var(--color-on-primary) !important;
+  font-weight: 400 !important;
+}
+
+div.stButton > button[kind="primary"]:hover,
+div.stButton > button[data-testid="baseButton-primary"]:hover {
+  background-color: #e5e5e5 !important;
+  opacity: 0.95 !important;
+}
+
+div.stButton > button[kind="primary"]:active,
+div.stButton > button[data-testid="baseButton-primary"]:active {
+  opacity: 0.8 !important;
+}
+
+/* Secondary Button: Canonical White-Outline Pill on Dark */
+div.stButton > button[kind="secondary"],
+div.stButton > button[data-testid="baseButton-secondary"],
+.btn-secondary {
+  background-color: transparent !important;
+  color: var(--color-ink) !important;
+  border-radius: var(--rounded-pill) !important;
+  border: 1px solid var(--color-hairline-translucent) !important;
+  padding: 8px 18px !important;
+  font-size: 13.5px !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.1px !important;
+  white-space: nowrap !important;
+  box-shadow: none !important;
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease !important;
+}
+
+div.stButton > button[kind="secondary"] *,
+div.stButton > button[data-testid="baseButton-secondary"] * {
+  color: var(--color-ink) !important;
+  font-weight: 400 !important;
+}
+
+div.stButton > button[kind="secondary"]:hover,
+div.stButton > button[data-testid="baseButton-secondary"]:hover {
+  background-color: var(--color-canvas-soft) !important;
+  border-color: var(--color-hairline-hover) !important;
+  color: var(--color-ink) !important;
+}
+
+div.stButton > button[kind="secondary"]:active,
+div.stButton > button[data-testid="baseButton-secondary"]:active {
+  background-color: var(--color-canvas-card) !important;
+  opacity: 0.8 !important;
+}
+
+/* Download Button: Outline Pill */
+div.stDownloadButton > button {
+  background-color: transparent !important;
+  color: var(--color-ink) !important;
+  border-radius: var(--rounded-pill) !important;
+  border: 1px solid var(--color-hairline-translucent) !important;
+  padding: 8px 22px !important;
+  font-size: 13.5px !important;
+  font-weight: 400 !important;
+  box-shadow: none !important;
+  transition: border-color 0.15s ease, background-color 0.15s ease !important;
+}
+
+div.stDownloadButton > button * {
+  color: var(--color-ink) !important;
+  font-weight: 400 !important;
+}
+
+div.stDownloadButton > button:hover {
+  background-color: var(--color-canvas-soft) !important;
+  border-color: var(--color-hairline-hover) !important;
+}
+
+/* Form Submit Button */
+div[data-testid="stFormSubmitButton"] > button {
+  background-color: var(--color-primary) !important;
+  color: var(--color-on-primary) !important;
+  border-radius: var(--rounded-pill) !important;
+  border: 1px solid var(--color-primary) !important;
+  padding: 8px 24px !important;
+  font-size: 13.5px !important;
+  font-weight: 400 !important;
+  box-shadow: none !important;
+}
+
+div[data-testid="stFormSubmitButton"] > button * {
+  color: var(--color-on-primary) !important;
+  font-weight: 400 !important;
+}
+
+/* =====================================================================
+   TOP NAVIGATION & SEGMENTED CONTROLS
+   ===================================================================== */
+
+/* Top Navigation Bar Layout Row */
+div[data-testid="stHorizontalBlock"]:has([data-testid="stSegmentedControl"]) {
+  align-items: center !important;
+  padding-bottom: 16px !important;
+  border-bottom: 1px solid var(--color-hairline) !important;
+  margin-bottom: 24px !important;
+}
+
+div[data-testid="stHorizontalBlock"]:has([data-testid="stSegmentedControl"]) div[data-testid="stColumn"] {
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Segmented Control Pill Container */
+[data-testid="stSegmentedControl"] {
+  background-color: var(--color-canvas-soft) !important;
+  border: 1px solid var(--color-hairline) !important;
+  border-radius: var(--rounded-pill) !important;
+  padding: 3px !important;
+  gap: 3px !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+  margin-left: auto !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  width: fit-content !important;
+  box-shadow: none !important;
+}
+
+[data-testid="stSegmentedControl"] button {
+  border-radius: var(--rounded-pill) !important;
+  border: none !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  color: var(--color-outline) !important;
+  padding: 6px 16px !important;
+  min-height: 32px !important;
+  line-height: 1.4 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-color: transparent !important;
+  transition: color 0.15s ease, background-color 0.15s ease !important;
+}
+
+[data-testid="stSegmentedControl"] button p,
+[data-testid="stSegmentedControl"] button span {
+  font-size: 13px !important;
+  line-height: 1.4 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: inherit !important;
+}
+
+[data-testid="stSegmentedControl"] button:hover {
+  color: var(--color-ink) !important;
+  background-color: var(--color-canvas-card) !important;
+}
+
+[data-testid="stSegmentedControl"] button[aria-checked="true"],
+[data-testid="stSegmentedControl"] button[data-checked="true"] {
+  background-color: var(--color-primary) !important;
+  color: var(--color-on-primary) !important;
+  font-weight: 400 !important;
+  box-shadow: none !important;
+}
+
+[data-testid="stSegmentedControl"] button[aria-checked="true"] p,
+[data-testid="stSegmentedControl"] button[data-checked="true"] p {
+  color: var(--color-on-primary) !important;
+  font-weight: 400 !important;
+}
+
+/* Tabs */
+.stTabs [data-baseweb="tab-list"] {
+  gap: 8px !important;
+  background-color: transparent !important;
+  border-bottom: 1px solid var(--color-hairline) !important;
+  padding-bottom: 8px !important;
+}
+
+.stTabs [data-baseweb="tab"] {
+  background-color: transparent !important;
+  color: var(--color-outline) !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  padding: 6px 14px !important;
+  border-radius: var(--rounded-pill) !important;
+  border: 1px solid transparent !important;
+}
+
+.stTabs [data-baseweb="tab"]:hover {
+  color: var(--color-ink) !important;
+  background-color: var(--color-canvas-soft) !important;
+}
+
+.stTabs [aria-selected="true"] {
+  color: var(--color-ink) !important;
+  background-color: var(--color-canvas-card) !important;
+  border: 1px solid var(--color-hairline-translucent) !important;
+}
+
+/* Pills */
+[data-testid="stPills"] button {
+  border-radius: var(--rounded-pill) !important;
+  border: 1px solid var(--color-hairline) !important;
+  font-size: 12.5px !important;
+  font-weight: 400 !important;
+  padding: 4px 14px !important;
+  background-color: var(--color-canvas-card) !important;
+  color: var(--color-body) !important;
+}
+
+[data-testid="stPills"] button[aria-checked="true"] {
+  background-color: var(--color-primary) !important;
+  color: var(--color-on-primary) !important;
+  border-color: var(--color-primary) !important;
+}
+
+/* =====================================================================
+   INPUTS & FORM CONTROLS (8px RADIUS, HAIRLINE BORDER)
+   ===================================================================== */
+
+[data-testid="stTextInput"] input,
+[data-testid="stTextArea"] textarea,
+[data-testid="stNumberInput"] input {
+  background-color: var(--color-canvas-soft) !important;
+  border: 1px solid var(--color-hairline) !important;
+  border-radius: var(--rounded-sm) !important;
+  color: var(--color-ink) !important;
+  font-size: 13.5px !important;
+  font-weight: 400 !important;
+  padding: 9px 14px !important;
+  box-shadow: none !important;
+  transition: border-color 0.15s ease !important;
+}
+
+[data-testid="stTextInput"] input:focus,
+[data-testid="stTextArea"] textarea:focus,
+[data-testid="stNumberInput"] input:focus {
+  border-color: var(--color-hairline-translucent) !important;
+  outline: none !important;
+}
+
+[data-testid="stSelectbox"] div[data-baseweb="select"] {
+  background-color: var(--color-canvas-soft) !important;
+  border: 1px solid var(--color-hairline) !important;
+  border-radius: var(--rounded-sm) !important;
+  color: var(--color-ink) !important;
+  box-shadow: none !important;
+}
+
+[data-testid="stSelectbox"] div[data-baseweb="select"]:hover {
+  border-color: var(--color-hairline-translucent) !important;
+}
+
+/* File Uploader Container */
+[data-testid="stFileUploader"] {
+  background-color: var(--color-canvas-card) !important;
+  border: 1px dashed var(--color-hairline) !important;
+  border-radius: var(--rounded-sm) !important;
+  padding: 24px 20px !important;
+  transition: border-color 0.2s ease !important;
+}
+
+[data-testid="stFileUploader"]:hover {
+  border-color: var(--color-hairline-translucent) !important;
+}
+
+[data-testid="stFileUploader"] section {
+  background-color: transparent !important;
+  border: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  gap: 12px !important;
+}
+
+/* File Uploader Pill Button: Clean 'Upload' text only, centered, no overlapping icon or pseudo content */
+[data-testid="stFileUploader"] button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  border-radius: var(--rounded-pill) !important;
+  border: 1px solid var(--color-hairline-translucent) !important;
+  background-color: transparent !important;
+  color: var(--color-ink) !important;
+  padding: 8px 24px !important;
+  font-family: var(--font-sans) !important;
+  font-size: 13.5px !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.1px !important;
+  line-height: 1.4 !important;
+  white-space: nowrap !important;
+  cursor: pointer !important;
+  box-shadow: none !important;
+  position: relative !important;
+  text-indent: 0 !important;
+  overflow: hidden !important;
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease !important;
+}
+
+[data-testid="stFileUploader"] button::before,
+[data-testid="stFileUploader"] button::after {
+  display: none !important;
+  content: none !important;
+}
+
+[data-testid="stFileUploader"] button:hover {
+  border-color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  color: #ffffff !important;
+}
+
+/* Strictly hide the icon inside the uploader button so only the word 'Upload' appears cleanly without collision */
+[data-testid="stFileUploader"] button [data-testid="stIconMaterial"],
+[data-testid="stFileUploader"] button .material-symbols-rounded,
+[data-testid="stFileUploader"] button [aria-hidden="true"],
+[data-testid="stFileUploader"] button svg {
+  display: none !important;
+  visibility: hidden !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 0 !important;
+}
+
+[data-testid="stFileUploader"] button * {
+  color: var(--color-ink) !important;
+  font-family: var(--font-sans) !important;
+  font-weight: 400 !important;
+}
+
+/* =====================================================================
+   METRICS, DATAFRAMES, EXPANDERS & ALERTS
+   ===================================================================== */
+
+[data-testid="stMetric"] {
+  background-color: var(--color-canvas-card) !important;
+  border: 1px solid var(--color-hairline) !important;
+  border-radius: var(--rounded-sm) !important;
+  padding: 20px 24px !important;
+  box-shadow: none !important;
+}
+
+[data-testid="stMetricLabel"] {
+  font-family: var(--font-mono) !important;
+  font-size: 11px !important;
+  font-weight: 400 !important;
+  letter-spacing: 1.4px !important;
+  text-transform: uppercase !important;
+  color: var(--color-outline) !important;
+}
+
+[data-testid="stMetricValue"] {
+  font-size: 36px !important;
+  font-weight: 400 !important;
+  letter-spacing: -1.2px !important;
+  color: var(--color-ink) !important;
+  line-height: 1.1 !important;
+}
+
+/* Dataframe and Tables */
+[data-testid="stDataFrame"], [data-testid="stTable"] {
+  border: 1px solid var(--color-hairline) !important;
+  border-radius: var(--rounded-sm) !important;
+  overflow: hidden !important;
+  background-color: var(--color-canvas-card) !important;
+  box-shadow: none !important;
+}
+
+/* Expander */
+[data-testid="stExpander"] {
+  border: 1px solid var(--color-hairline) !important;
+  border-radius: var(--rounded-sm) !important;
+  background-color: var(--color-canvas-card) !important;
+  box-shadow: none !important;
+  margin-bottom: 12px !important;
+}
+
+[data-testid="stExpander"] summary {
+  color: var(--color-ink) !important;
+  font-weight: 400 !important;
+  font-size: 13.5px !important;
+}
+
+/* Dividers */
+hr, [data-testid="stDivider"] {
+  border-color: var(--color-hairline) !important;
+  margin: 1.75rem 0 !important;
+}
+
+/* Alerts and Callouts */
+.stAlert {
+  border-radius: var(--rounded-sm) !important;
+  border: 1px solid var(--color-hairline) !important;
+  background-color: var(--color-canvas-card) !important;
+  color: var(--color-body) !important;
+  box-shadow: none !important;
+}
+
+/* Code Blocks */
+code, pre {
+  font-family: var(--font-mono) !important;
+  font-size: 12.5px !important;
+  background-color: var(--color-canvas-soft) !important;
+  color: var(--color-accent-breeze) !important;
+  border-radius: 4px !important;
+}
+
+/* =====================================================================
+   EXACT COMPONENT CLASSES FROM site-design/ (GOOGLE STITCH BLUEPRINTS)
+   ===================================================================== */
+
+/* Brand & Top Bar */
+.pc-brand-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  line-height: 1;
+}
+
+.pc-brand-logo {
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+  border-radius: var(--rounded-pill);
+  background: var(--color-canvas-soft);
+  border: 1px solid var(--color-hairline-translucent);
+  color: var(--color-ink);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.pc-brand-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-ink);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.pc-brand-descriptor {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-outline);
+  margin-top: 3px;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+/* Universal Pill Badges */
+.pc-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 400;
+  padding: 4px 12px;
+  border-radius: var(--rounded-pill);
+  border: 1px solid var(--color-hairline-translucent);
+  background-color: var(--color-canvas-soft);
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+}
+
+.pc-pill-score {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  border-color: var(--color-primary);
+  font-family: var(--font-sans);
+}
+
+.pc-pill-margin {
+  color: var(--color-body);
+  border-color: var(--color-hairline);
+  background-color: var(--color-canvas-soft);
+}
+
+/* Hero Section */
+.pc-hero-headline {
+  font-size: 56px;
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -1.8px;
+  color: var(--color-ink);
+  margin-top: 8px;
+  margin-bottom: 12px;
+  max-width: 900px;
+}
+
+.pc-hero-subtext {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-outline);
+  max-width: 780px;
+  margin-bottom: 20px;
+}
+
+/* Telemetry KPI Cards */
+.pc-stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.pc-stat-card {
+  background-color: var(--color-canvas-card);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--rounded-sm);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  transition: border-color 0.2s ease;
+}
+
+.pc-stat-card:hover {
+  border-color: var(--color-hairline-translucent);
+}
+
+.pc-stat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--color-hairline);
+  padding-bottom: 8px;
+}
+
+.pc-stat-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-outline);
+}
+
+.pc-stat-number {
+  font-size: 36px;
+  font-weight: 400;
+  letter-spacing: -1.2px;
+  line-height: 42px;
+  color: var(--color-ink);
+}
+
+.pc-stat-subtext {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+/* Card & Content Boxes */
+.pc-card {
+  background-color: var(--color-canvas-card);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--rounded-sm);
+  padding: 24px;
+  margin-bottom: 20px;
+  transition: border-color 0.2s ease;
+}
+
+.pc-card:hover {
+  border-color: var(--color-hairline-translucent);
+}
+
+.pc-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-hairline);
+}
+
+.pc-card-title {
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: -0.4px;
+  color: var(--color-ink);
+  margin: 0;
+}
+
+/* Reticle Viewfinder & Laser Scanning */
+.pc-scan-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--rounded-sm);
+  border: 1px solid var(--color-hairline);
+  background-color: var(--color-canvas);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pc-scan-laser {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--color-accent-sunset);
+  animation: scan-line 3s linear infinite;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.pc-reticle-grid {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.pc-reticle-grid > div {
+  border-right: 1px solid var(--color-hairline);
+  border-bottom: 1px solid var(--color-hairline);
+}
+
+.pc-target-roi {
+  position: absolute;
+  top: 26%;
+  left: 30%;
+  width: 44%;
+  height: 48%;
+  border: 1px solid var(--color-accent-sunset);
+  background-color: rgba(255, 122, 23, 0.08);
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 6px;
+}
+
+/* Micro-Table for Ingestion Specs */
+.pc-micro-table {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-hairline);
+  padding: 12px;
+  border-radius: var(--rounded-sm);
+  margin: 12px 0;
+}
+
+.pc-micro-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.pc-micro-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--color-outline);
+}
+
+.pc-micro-val {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-ink);
+}
+
+/* Softmax Probability Bars */
+.pc-progress-track {
+  width: 100%;
+  height: 5px;
+  background-color: var(--color-canvas-soft);
+  border-radius: var(--rounded-pill);
+  overflow: hidden;
+}
+
+.pc-progress-fill-gradient {
+  height: 100%;
+  background: linear-gradient(90deg, #ff7a17, #7c3aed);
+  border-radius: var(--rounded-pill);
+  transition: width 0.35s ease;
+}
+
+.pc-progress-fill-muted {
+  height: 100%;
+  background-color: #444748;
+  border-radius: var(--rounded-pill);
+}
+
+/* Clinical Pathology Summary Box */
+.pc-clinical-box {
+  border-left: 2px solid var(--color-accent-sunset);
+  padding-left: 14px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background-color: var(--color-canvas-soft);
+  border-radius: 0 var(--rounded-sm) var(--rounded-sm) 0;
+  margin: 12px 0;
+}
+
+/* Agronomic Checklist */
+.pc-care-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13.5px;
+  color: var(--color-body);
+  line-height: 1.55;
+  margin-bottom: 8px;
+}
+
+.pc-care-bullet {
+  color: var(--color-accent-sunset);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+/* Shard Sub-strip */
+.pc-shard-strip {
+  width: 100%;
+  background-color: var(--color-canvas-soft);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--rounded-sm);
+  padding: 16px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+/* User Profile Badge (Top Nav & Header) */
+.pc-header-user-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 14px 4px 5px;
+  background-color: var(--color-canvas-soft);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--rounded-pill);
+}
+
+.pc-user-avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: var(--rounded-full);
+  background: #ffffff;
+  color: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+/* Dedicated Auth Card & Form Container Alignment */
+.pc-auth-card {
+  background-color: var(--color-canvas-card);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--rounded-sm);
+  padding: 36px 40px;
+  max-width: 540px;
+  margin: 0 auto 32px auto;
+}
+
+[data-testid="stVerticalBlockBorderWrapper"] {
+  background-color: var(--color-canvas-card) !important;
+  border: 1px solid var(--color-hairline) !important;
+  border-radius: var(--rounded-sm) !important;
+  padding: 32px 36px !important;
+  box-shadow: none !important;
+}
+
+[data-testid="stVerticalBlockBorderWrapper"] [data-testid="stVerticalBlock"] {
+  gap: 16px !important;
+}
+
+/* Tabs inside auth container */
+[data-testid="stTabs"] [data-baseweb="tab-list"] {
+  border-bottom: 1px solid var(--color-hairline) !important;
+  gap: 12px !important;
+  margin-bottom: 20px !important;
+}
+
+[data-testid="stTabs"] [data-baseweb="tab"] {
+  background: transparent !important;
+  border: none !important;
+  padding: 8px 14px !important;
+  font-size: 13.5px !important;
+  color: var(--color-outline) !important;
+  transition: color 0.15s ease !important;
+}
+
+[data-testid="stTabs"] [aria-selected="true"] {
+  color: #ffffff !important;
+  border-bottom: 2px solid #ffffff !important;
+}
+
+.pc-auth-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.pc-auth-title {
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--color-ink);
+  letter-spacing: -0.6px;
+  margin-bottom: 6px;
+}
+
+.pc-auth-subtitle {
+  font-size: 13.5px;
+  color: var(--color-outline);
+  line-height: 1.5;
+}
+
+/* Site Footer */
+.pc-footer {
+  width: 100%;
+  border-top: 1px solid var(--color-hairline);
+  background-color: var(--color-canvas);
+  padding: 24px 0;
+  margin-top: 48px;
+}
+
+.pc-footer-inner {
+  max-width: 1536px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* =====================================================================
+   RESPONSIVE DESIGN SYSTEM BREAKPOINTS
+   ===================================================================== */
+
+@media (max-width: 992px) {
+  .pc-stats-row {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+}
+
+@media (max-width: 860px) {
+  div[data-testid="stHorizontalBlock"]:has([data-testid="stSegmentedControl"]) {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 14px !important;
+  }
+
+  [data-testid="stSegmentedControl"] {
+    margin-left: 0 !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    white-space: nowrap !important;
+    padding-bottom: 4px !important;
+  }
+
+  .pc-brand-descriptor {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .block-container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    padding-top: 1.25rem !important;
+    padding-bottom: 3rem !important;
+  }
+
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+
+  button[kind="primary"], button[kind="secondary"], .stDownloadButton button {
+    min-height: 44px !important;
+    font-size: 14px !important;
+    width: 100% !important;
+  }
+
+  .pc-hero-headline {
+    font-size: 32px !important;
+    letter-spacing: -1.0px !important;
+    line-height: 1.15 !important;
+  }
+
+  .pc-hero-subtext {
+    font-size: 14px !important;
+  }
+
+  .pc-auth-card {
+    padding: 24px 20px !important;
+  }
+
+  .pc-stat-number {
+    font-size: 28px !important;
+  }
+
+  .pc-micro-table {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .pc-stats-row {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  .pc-hero-headline {
+    font-size: 26px !important;
+    letter-spacing: -0.8px !important;
+  }
+
+  .pc-brand-title {
+    font-size: 14px !important;
+  }
+}

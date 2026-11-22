@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><title>PlantCare AI — Autonomous Crop Intelligence Platform</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"hairline":"#212327","canvas-card":"#191919","canvas-soft":"#1a1c20","canvas-mid":"#363a3f","body":"#dadbdf","outline":"#8e9192","outline-variant":"#444748","accent-emerald":"#34d399","accent-sunset":"#ff7a17","accent-sunset-soft":"#ffc285","accent-breeze":"#a0c3ec","accent-twilight":"#c4b5fd","accent-dusk":"#7c3aed","background":"#0a0a0a","primary":"#ffffff","on-primary":"#0a0a0a","on-surface":"#ffffff","on-surface-variant":"#8e9192"},borderRadius:{DEFAULT:"8px",sm:"8px",lg:"2rem",xl:"3rem",full:"9999px"},fontFamily:{"body-md":["Inter, system-ui, sans-serif"],"display-xl":["Inter, system-ui, sans-serif"],"label-mono":["JetBrains Mono, monospace"],"caption-mono":["JetBrains Mono, ui-monospace, monospace"],"button-md":["Inter, system-ui, sans-serif"],"headline-xl":["Inter, system-ui, sans-serif"],"headline-sm":["Inter, system-ui, sans-serif"]},fontSize:{"headline-xl":["72px",{lineHeight:"76px",letterSpacing:"-1.8px",fontWeight:"400"}],"headline-sm":["24px",{lineHeight:"30px",letterSpacing:"-0.6px",fontWeight:"400"}],"label-mono":["12px",{lineHeight:"18px",letterSpacing:"1.4px",fontWeight:"400"}],"body-md":["15px",{lineHeight:"24px",fontWeight:"400"}],"body-sm":["13px",{lineHeight:"20px",fontWeight:"400"}],"button-md":["13px",{lineHeight:"20px",fontWeight:"400"}],"caption-mono":["12px",{lineHeight:"18px",letterSpacing:"1.4px",fontWeight:"400"}]}}}</script><style>@layer base{html,body{margin:0;padding:0;background-color:#0a0a0a;color:#ffffff;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}.no-scrollbar::-webkit-scrollbar{display:none;}.no-scrollbar{-ms-overflow-style:none;scrollbar-width:none;}</style></head><body class="bg-[#0a0a0a] text-white font-body-md text-body-md antialiased selection:bg-white selection:text-black min-h-screen flex flex-col justify-between"><header class="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a] border-b border-hairline"><div class="h-16 w-full px-6 flex items-center justify-between gap-4"><div class="flex items-center gap-3 shrink-0"><span class="text-white text-[15px] select-none">✦</span><div class="flex flex-col"><span class="font-button-md text-button-md tracking-tight text-white uppercase font-normal">PlantCare AI</span><span class="font-caption-mono text-[9px] uppercase tracking-[0.18em] text-outline leading-tight font-normal">AUTONOMOUS VISION INTELLIGENCE</span></div></div><nav class="hidden lg:flex items-center bg-canvas-soft border border-hairline rounded-full p-1 gap-1"><a class="px-3 py-1 rounded-full font-button-md text-button-md text-outline hover:text-white hover:bg-canvas-card transition-colors font-normal" data-path="diagnose" href="#">Diagnose</a><a class="px-3 py-1 rounded-full font-button-md text-button-md text-outline hover:text-white hover:bg-canvas-card transition-colors font-normal" data-path="prediction-history" href="#">Prediction History</a><a aria-current="page" class="px-3 py-1 rounded-full bg-white text-black font-button-md text-button-md font-normal" data-path="disease-library" href="#">Disease Library</a><a class="px-3 py-1 rounded-full font-button-md text-button-md text-outline hover:text-white hover:bg-canvas-card transition-colors font-normal" data-path="model-and-benchmarks" href="#">Model &amp; Benchmarks</a><a class="px-3 py-1 rounded-full font-button-md text-button-md text-outline hover:text-white hover:bg-canvas-card transition-colors font-normal" data-path="admin-telemetry" href="#">Admin Telemetry</a></nav><div class="flex items-center gap-3 shrink-0"><div class="hidden sm:flex items-center gap-1.5 px-3 h-7 rounded-full bg-canvas-soft border border-hairline font-caption-mono text-caption-mono text-outline font-normal"><span class="w-1.5 h-1.5 rounded-full bg-accent-emerald animate-pulse"></span><span>NODE: US-WEST-04 // 18MS</span></div><div class="w-8 h-8 rounded-full bg-white flex items-center justify-center shrink-0 text-black"><span class="material-symbols-outlined text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 bg-[#0a0a0a] min-h-screen flex-1"><div class="flex flex-col w-full">
+<!-- Top Command & Hero Diagnostic Strip -->
+<section class="w-full border-b border-hairline px-6 py-10 bg-[#0a0a0a]">
+<div class="max-w-[1440px] mx-auto flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+<div class="flex flex-col max-w-3xl space-y-2">
+<div class="inline-flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-accent-emerald animate-pulse"></span>
+<span class="font-caption-mono text-caption-mono text-outline uppercase tracking-[0.16em] font-normal">
+            KNOWLEDGE BASE // BOTANICAL ENCYCLOPEDIA
+          </span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-white tracking-[-1.8px] font-normal">
+          Disease Library
+        </h1>
+<p class="font-body-md text-body-md text-body max-w-2xl pt-1 leading-relaxed font-normal">
+          Taxonomic reference catalog indexing 38 plant diseases across 14 agricultural crops, including biological pathology, early indicators, and organic IPM protocols.
+        </p>
+</div>
+<!-- Right Metadata Micro-Telemetry -->
+<div class="flex flex-col sm:flex-row lg:flex-col items-start lg:items-end gap-2 font-caption-mono text-caption-mono font-normal">
+<div class="inline-flex items-center gap-2 px-3 py-1.5 bg-canvas-soft border border-hairline rounded-full text-white">
+<span class="text-accent-emerald">●</span>
+<span class="tracking-wide">INDEX COVERAGE: 38 / 38 CLASSIFIERS READY</span>
+</div>
+<div class="text-outline uppercase tracking-wider text-[11px] lg:text-right">
+          TAXONOMIC REVISION: <span class="text-white">V24.8.4 STABLE</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Query & Genus Filtering Bar -->
+<section class="w-full border-b border-hairline bg-[#0a0a0a] sticky top-16 z-30 px-6 py-4">
+<div class="max-w-[1440px] mx-auto flex flex-col gap-4">
+<!-- Search Field Input -->
+<div class="relative w-full">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="w-full pl-10 pr-24 py-2 bg-canvas-soft border border-hairline rounded-sm text-white placeholder-outline font-body-sm text-body-sm focus:outline-none focus:border-white transition-colors" id="taxonomy-search" placeholder="Filter 38 disease classes by pathogen, genus, or host crop... [⌘K]" type="text"/>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center gap-1 pointer-events-none font-caption-mono text-caption-mono text-outline">
+<kbd class="px-1.5 py-[2px] bg-canvas-mid rounded text-[10px] text-body border border-hairline font-normal">⌘K</kbd>
+</div>
+</div>
+<!-- Crop Genus Filter Pills Slider -->
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 -mb-1 text-nowrap">
+<button class="filter-pill px-3.5 py-1.5 rounded-full bg-white text-black font-button-md text-button-md font-normal transition-all">
+          All Crops (38)
+        </button>
+<button class="filter-pill px-3.5 py-1.5 rounded-full bg-transparent border border-hairline text-outline hover:text-white hover:border-outline font-button-md text-button-md font-normal transition-all">
+          Potato (3)
+        </button>
+<button class="filter-pill px-3.5 py-1.5 rounded-full bg-transparent border border-hairline text-outline hover:text-white hover:border-outline font-button-md text-button-md font-normal transition-all">
+          Tomato (9)
+        </button>
+<button class="filter-pill px-3.5 py-1.5 rounded-full bg-transparent border border-hairline text-outline hover:text-white hover:border-outline font-button-md text-button-md font-normal transition-all">
+          Corn / Maize (4)
+        </button>
+<button class="filter-pill px-3.5 py-1.5 rounded-full bg-transparent border border-hairline text-outline hover:text-white hover:border-outline font-button-md text-button-md font-normal transition-all">
+          Grape (4)
+        </button>
+<button class="filter-pill px-3.5 py-1.5 rounded-full bg-transparent border border-hairline text-outline hover:text-white hover:border-outline font-button-md text-button-md font-normal transition-all">
+          Apple (4)
+        </button>
+<button class="filter-pill px-3.5 py-1.5 rounded-full bg-transparent border border-hairline text-outline hover:text-white hover:border-outline font-button-md text-button-md font-normal transition-all">
+          Wheat (3)
+        </button>
+<button class="filter-pill px-3.5 py-1.5 rounded-full bg-transparent border border-hairline text-outline hover:text-white hover:border-outline font-button-md text-button-md font-normal transition-all">
+          Soybean (2)
+        </button>
+<button class="filter-pill px-3.5 py-1.5 rounded-full bg-transparent border border-hairline text-outline hover:text-white hover:border-outline font-button-md text-button-md font-normal transition-all">
+          Bell Pepper (2)
+        </button>
+</div>
+</div>
+</section>
+<!-- Taxonomic Disease Grid (2x2) -->
+<section class="w-full px-6 py-8">
+<div class="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
+<!-- CARD 1: POTATO -->
+<article class="bg-canvas-card border border-hairline rounded-sm flex flex-col justify-between overflow-hidden shadow-none hover:border-outline/60 transition-colors">
+<!-- Top Metadata & Diagnostic Media Anchor -->
+<div class="p-5 flex flex-col gap-4 border-b border-hairline bg-canvas-card">
+<div class="flex items-center justify-between gap-3">
+<span class="font-caption-mono text-caption-mono tracking-[0.14em] uppercase text-outline text-[11px] font-normal">
+              CROP // POTATO // SOLANUM TUBEROSUM
+            </span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-[2px] rounded-full bg-canvas-soft border border-hairline font-label-mono text-label-mono text-accent-sunset text-[11px] uppercase tracking-wider font-normal">
+<span class="w-1.5 h-1.5 rounded-full bg-accent-sunset"></span>
+              HIGH RISK
+            </span>
+</div>
+<div class="flex flex-col sm:flex-row gap-5 items-start">
+<div class="w-full sm:w-36 h-36 shrink-0 rounded-sm overflow-hidden bg-[#0a0a0a] border border-hairline relative group">
+<img class="w-full h-full object-cover grayscale contrast-125 group-hover:scale-105 transition-transform duration-300" data-alt="Macrophotography of potato plant leaf showing Alternaria solani early blight fungal disease with concentric dark brown rings and chlorotic halos against deep black laboratory background, botanical scientific specimen lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlONEQKsMJHMzZWrMln2Dq25fwE2_PrAouLZndjjRJhzQsObBhXw25mXQe20Lvmb5KMfILjLDBiYwmePWl2jXR9BeZhs-zOCbIbsPymm6cRybMDK_40w8KHGpHhk0aN7rhWQTgA3qU6OARDtB2CrBHReRQcPWVRwud83ANYP-_uLSIdQ9arfd9a1OtzrwZXY9LzE2vJT8GaK_PM-M938GzgLt2GRcDoejlQejhoXfd"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/80 via-transparent to-transparent"></div>
+<span class="absolute bottom-1.5 left-1.5 font-caption-mono text-[9px] text-body px-1.5 py-[1px] bg-[#0a0a0a]/90 border border-hairline uppercase font-normal">MACRO // 40X</span>
+</div>
+<div class="flex flex-col justify-center flex-1">
+<h2 class="font-headline-sm text-headline-sm text-white tracking-[-0.6px] font-normal">
+                Early Blight <span class="italic text-outline font-normal">(Alternaria solani)</span>
+</h2>
+<div class="mt-1 inline-flex items-center gap-1.5 font-caption-mono text-caption-mono text-outline font-normal">
+<span class="text-accent-breeze">PATHO-CLASS:</span>
+<span class="text-white">Fungal Phytopathogen</span>
+</div>
+<div class="mt-2 flex items-center gap-2 font-caption-mono text-[11px] text-outline font-normal">
+<span>INCUBATION: 48-72 HRS</span>
+<span>•</span>
+<span>VECTOR: AIRBORNE CONIDIA</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Pathology Content Sections -->
+<div class="p-5 flex flex-col gap-4 divide-y divide-hairline">
+<div class="flex flex-col gap-1.5 pt-1 first:pt-0">
+<span class="font-caption-mono text-caption-mono text-outline uppercase tracking-wider text-[11px] flex items-center gap-1.5 font-normal">
+<span class="material-symbols-outlined text-[14px]">biotech</span>
+              BIOLOGICAL SYMPTOMS &amp; MORPHOMETRY
+            </span>
+<p class="font-body-sm text-body-sm text-body leading-relaxed font-normal">
+              Concentric brown-black lesions with characteristic "target board" rings, bounded by chlorotic yellow halos. Defoliation accelerates under alternating wet-dry microclimates, progressively seizing lower senescent foliage first.
+            </p>
+</div>
+<div class="flex flex-col gap-1.5 pt-4">
+<span class="font-caption-mono text-caption-mono text-outline uppercase tracking-wider text-[11px] flex items-center gap-1.5 font-normal">
+<span class="material-symbols-outlined text-[14px]">spa</span>
+              BIO-REMEDIATION &amp; ORGANIC IPM PROTOCOL
+            </span>
+<p class="font-body-sm text-body-sm text-body leading-relaxed font-normal">
+              Targeted foliar micro-spray with antagonistic <em class="text-white not-italic">Bacillus subtilis</em> strain QST 713. Alternate with fixed copper hydroxide (2.5 g/L) and potassium bicarbonate buffering at first symptom detection.
+            </p>
+</div>
+</div>
+<!-- Card Footer Actions & Live Metrics -->
+<div class="px-5 py-3.5 border-t border-hairline bg-[#0a0a0a] flex items-center justify-between gap-4">
+<div class="flex items-center gap-1.5 font-caption-mono text-caption-mono text-outline font-normal">
+<span class="material-symbols-outlined text-[16px] text-body">insights</span>
+<span>3,412 Telemetry Matches</span>
+</div>
+<button class="px-3.5 py-1.5 rounded-full border border-hairline hover:border-white text-white hover:bg-canvas-soft font-button-md text-button-md transition-colors inline-flex items-center gap-1 font-normal">
+<span>Inspect Clinical Protocol</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- CARD 2: TOMATO -->
+<article class="bg-canvas-card border border-hairline rounded-sm flex flex-col justify-between overflow-hidden shadow-none hover:border-outline/60 transition-colors">
+<!-- Top Metadata & Diagnostic Media Anchor -->
+<div class="p-5 flex flex-col gap-4 border-b border-hairline bg-canvas-card">
+<div class="flex items-center justify-between gap-3">
+<span class="font-caption-mono text-caption-mono tracking-[0.14em] uppercase text-outline text-[11px] font-normal">
+              CROP // TOMATO // SOLANUM LYCOPERSICUM
+            </span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-[2px] rounded-full bg-accent-sunset/20 border border-accent-sunset text-accent-sunset font-label-mono text-label-mono text-[11px] uppercase tracking-wider font-normal">
+<span class="w-1.5 h-1.5 rounded-full bg-accent-sunset"></span>
+              CRITICAL
+            </span>
+</div>
+<div class="flex flex-col sm:flex-row gap-5 items-start">
+<div class="w-full sm:w-36 h-36 shrink-0 rounded-sm overflow-hidden bg-[#0a0a0a] border border-hairline relative group">
+<img class="w-full h-full object-cover grayscale contrast-125 group-hover:scale-105 transition-transform duration-300" data-alt="Microscopic pathology shot of tomato foliage with Phytophthora infestans late blight showing large water-soaked olive-dark lesions and pale powdery sporulation on the underside, pitch black studio framing." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzMIWiCfdlWMuLRJE2Usoz2dVXAdOeHr7_rG4C2o7WKKWtTfKo3IAodiOc_lGfWoVF01rkOPM52erLK45uqpTaYR3sVVV2HgHA6n-avD77IfhDCTU-H3P6i1sNq7JPNcRpHxip7eWFnqfULiDdZRnexrcODIoU7XpBRp8fK4QzuknzCkE2WUpCRZWKo45VoUQv7xnIoxSUj4TyQ5901SORCLzEQg3DYcUDDeC284ar"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/80 via-transparent to-transparent"></div>
+<span class="absolute bottom-1.5 left-1.5 font-caption-mono text-[9px] text-body px-1.5 py-[1px] bg-[#0a0a0a]/90 border border-hairline uppercase font-normal">MACRO // 100X</span>
+</div>
+<div class="flex flex-col justify-center flex-1">
+<h2 class="font-headline-sm text-headline-sm text-white tracking-[-0.6px] font-normal">
+                Late Blight <span class="italic text-outline font-normal">(Phytophthora infestans)</span>
+</h2>
+<div class="mt-1 inline-flex items-center gap-1.5 font-caption-mono text-caption-mono text-outline font-normal">
+<span class="text-accent-sunset">PATHO-CLASS:</span>
+<span class="text-white">Oomycete Water Mold</span>
+</div>
+<div class="mt-2 flex items-center gap-2 font-caption-mono text-[11px] text-outline font-normal">
+<span>INCUBATION: 24-48 HRS</span>
+<span>•</span>
+<span>HIGH MORBIDITY</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Pathology Content Sections -->
+<div class="p-5 flex flex-col gap-4 divide-y divide-hairline">
+<div class="flex flex-col gap-1.5 pt-1 first:pt-0">
+<span class="font-caption-mono text-caption-mono text-outline uppercase tracking-wider text-[11px] flex items-center gap-1.5 font-normal">
+<span class="material-symbols-outlined text-[14px]">biotech</span>
+              BIOLOGICAL SYMPTOMS &amp; MORPHOMETRY
+            </span>
+<p class="font-body-sm text-body-sm text-body leading-relaxed font-normal">
+              Rapidly spreading, water-soaked irregular dark green to purplish lesions on adaxial leaf surfaces. Under high relative humidity (&gt;90%), delicate white velvety fungal mycelium and sporangiophores sporulate on abaxial surfaces.
+            </p>
+</div>
+<div class="flex flex-col gap-1.5 pt-4">
+<span class="font-caption-mono text-caption-mono text-outline uppercase tracking-wider text-[11px] flex items-center gap-1.5 font-normal">
+<span class="material-symbols-outlined text-[14px]">spa</span>
+              BIO-REMEDIATION &amp; ORGANIC IPM PROTOCOL
+            </span>
+<p class="font-body-sm text-body-sm text-body leading-relaxed font-normal">
+              Systemic eradication of infected volunteers and cull piles. Protective prophylactic copper octanoate sprays coupled with rhizosphere colonizers (<em class="text-white not-italic">Trichoderma harzianum</em>) to outcompete zoospore germination.
+            </p>
+</div>
+</div>
+<!-- Card Footer Actions & Live Metrics -->
+<div class="px-5 py-3.5 border-t border-hairline bg-[#0a0a0a] flex items-center justify-between gap-4">
+<div class="flex items-center gap-1.5 font-caption-mono text-caption-mono text-outline font-normal">
+<span class="material-symbols-outlined text-[16px] text-body">insights</span>
+<span>5,890 Telemetry Matches</span>
+</div>
+<button class="px-3.5 py-1.5 rounded-full border border-hairline hover:border-white text-white hover:bg-canvas-soft font-button-md text-button-md transition-colors inline-flex items-center gap-1 font-normal">
+<span>Inspect Clinical Protocol</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- CARD 3: GRAPE -->
+<article class="bg-canvas-card border border-hairline rounded-sm flex flex-col justify-between overflow-hidden shadow-none hover:border-outline/60 transition-colors">
+<!-- Top Metadata & Diagnostic Media Anchor -->
+<div class="p-5 flex flex-col gap-4 border-b border-hairline bg-canvas-card">
+<div class="flex items-center justify-between gap-3">
+<span class="font-caption-mono text-caption-mono tracking-[0.14em] uppercase text-outline text-[11px] font-normal">
+              CROP // GRAPE // VITIS VINIFERA
+            </span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-[2px] rounded-full bg-canvas-soft border border-hairline font-label-mono text-label-mono text-accent-sunset text-[11px] uppercase tracking-wider font-normal">
+<span class="w-1.5 h-1.5 rounded-full bg-accent-sunset"></span>
+              HIGH RISK
+            </span>
+</div>
+<div class="flex flex-col sm:flex-row gap-5 items-start">
+<div class="w-full sm:w-36 h-36 shrink-0 rounded-sm overflow-hidden bg-[#0a0a0a] border border-hairline relative group">
+<img class="w-full h-full object-cover grayscale contrast-125 group-hover:scale-105 transition-transform duration-300" data-alt="Detailed agricultural diagnostic capture of vitis vinifera grape leaf affected by black rot Guignardia bidwellii, circular reddish-brown necrotic spots with distinct tiny black pinhead pycnidia fruiting bodies." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAs-B1KUbxk6bF5CAARLgxmJtv4z2W8pVSU-i3Aa3samKLNwoHpKZPvQHPFCyCrSEOzS750TC8TD-qSSd08UZZLs0X7QEAoUqFZfNcJc4V5UsnL1TrrrgAP01v2VtW7rw8w8xZBb9ewrVLK5br-f3HMMvwZ2LBcL6UlzV6x4hNpFu-L7yQHUlUftszahfx6z_YxeSwm57oqjVO1vL65wKC6-1DJoD5p4RqR8YGVJHf"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/80 via-transparent to-transparent"></div>
+<span class="absolute bottom-1.5 left-1.5 font-caption-mono text-[9px] text-body px-1.5 py-[1px] bg-[#0a0a0a]/90 border border-hairline uppercase font-normal">MACRO // 60X</span>
+</div>
+<div class="flex flex-col justify-center flex-1">
+<h2 class="font-headline-sm text-headline-sm text-white tracking-[-0.6px] font-normal">
+                Black Rot <span class="italic text-outline font-normal">(Guignardia bidwellii)</span>
+</h2>
+<div class="mt-1 inline-flex items-center gap-1.5 font-caption-mono text-caption-mono text-outline font-normal">
+<span class="text-accent-twilight">PATHO-CLASS:</span>
+<span class="text-white">Ascomycete Fungus</span>
+</div>
+<div class="mt-2 flex items-center gap-2 font-caption-mono text-[11px] text-outline font-normal">
+<span>OVERWINTERS: CANE MUMMIES</span>
+<span>•</span>
+<span>ASCOSPORES</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Pathology Content Sections -->
+<div class="p-5 flex flex-col gap-4 divide-y divide-hairline">
+<div class="flex flex-col gap-1.5 pt-1 first:pt-0">
+<span class="font-caption-mono text-caption-mono text-outline uppercase tracking-wider text-[11px] flex items-center gap-1.5 font-normal">
+<span class="material-symbols-outlined text-[14px]">biotech</span>
+              BIOLOGICAL SYMPTOMS &amp; MORPHOMETRY
+            </span>
+<p class="font-body-sm text-body-sm text-body leading-relaxed font-normal">
+              Discrete, circular reddish-brown necrotic spots (2-10 mm) bordered by narrow dark brown bands. Tiny, raised coal-black specks (pycnidia) embed in ring formations within dead lamina tissue, inducing systemic fruit rot.
+            </p>
+</div>
+<div class="flex flex-col gap-1.5 pt-4">
+<span class="font-caption-mono text-caption-mono text-outline uppercase tracking-wider text-[11px] flex items-center gap-1.5 font-normal">
+<span class="material-symbols-outlined text-[14px]">spa</span>
+              BIO-REMEDIATION &amp; ORGANIC IPM PROTOCOL
+            </span>
+<p class="font-body-sm text-body-sm text-body leading-relaxed font-normal">
+              Meticulous early canopy thinning for convective air movement. Dormant micronized elemental sulfur applications paired with biological barrier <em class="text-white not-italic">Bacillus amyloliquefaciens</em> before bloom inflorescence.
+            </p>
+</div>
+</div>
+<!-- Card Footer Actions & Live Metrics -->
+<div class="px-5 py-3.5 border-t border-hairline bg-[#0a0a0a] flex items-center justify-between gap-4">
+<div class="flex items-center gap-1.5 font-caption-mono text-caption-mono text-outline font-normal">
+<span class="material-symbols-outlined text-[16px] text-body">insights</span>
+<span>1,204 Telemetry Matches</span>
+</div>
+<button class="px-3.5 py-1.5 rounded-full border border-hairline hover:border-white text-white hover:bg-canvas-soft font-button-md text-button-md transition-colors inline-flex items-center gap-1 font-normal">
+<span>Inspect Clinical Protocol</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- CARD 4: MAIZE -->
+<article class="bg-canvas-card border border-hairline rounded-sm flex flex-col justify-between overflow-hidden shadow-none hover:border-outline/60 transition-colors">
+<!-- Top Metadata & Diagnostic Media Anchor -->
+<div class="p-5 flex flex-col gap-4 border-b border-hairline bg-canvas-card">
+<div class="flex items-center justify-between gap-3">
+<span class="font-caption-mono text-caption-mono tracking-[0.14em] uppercase text-outline text-[11px] font-normal">
+              CROP // MAIZE // ZEA MAYS
+            </span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-[2px] rounded-full bg-canvas-soft border border-hairline font-label-mono text-label-mono text-accent-breeze text-[11px] uppercase tracking-wider font-normal">
+<span class="w-1.5 h-1.5 rounded-full bg-accent-breeze"></span>
+              MODERATE
+            </span>
+</div>
+<div class="flex flex-col sm:flex-row gap-5 items-start">
+<div class="w-full sm:w-36 h-36 shrink-0 rounded-sm overflow-hidden bg-[#0a0a0a] border border-hairline relative group">
+<img class="w-full h-full object-cover grayscale contrast-125 group-hover:scale-105 transition-transform duration-300" data-alt="Laboratory high resolution inspection of Northern Corn Leaf Blight Exserohilum turcicum on Zea mays leaf displaying long cigar-shaped grayish-green necrotic lesions parallel to veins on stark dark background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcyJAp8JA-FI5-RPyprFvOPA0bNR8qjNfrXyMa3uU9OmGPKwYCFfPHkxnGtye9PbSKlfEwTKssf0g8XAXihdzluV8IP-M4hA9Q7l92DgY21wlv0P7LAKj3c1lASUL0VYmNdolc5g75lJKpcFVvtnnYsdh67ulTiLfubU34G7fAiSxg8-Cv49hWpkRhqhp8C0c-ib4v8OE3bw3SDpuBWn1i7r3GTB0K-SWIrXocVDxo"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/80 via-transparent to-transparent"></div>
+<span class="absolute bottom-1.5 left-1.5 font-caption-mono text-[9px] text-body px-1.5 py-[1px] bg-[#0a0a0a]/90 border border-hairline uppercase font-normal">MACRO // 30X</span>
+</div>
+<div class="flex flex-col justify-center flex-1">
+<h2 class="font-headline-sm text-headline-sm text-white tracking-[-0.6px] font-normal">
+                Northern Leaf Blight <span class="italic text-outline font-normal">(Exserohilum turcicum)</span>
+</h2>
+<div class="mt-1 inline-flex items-center gap-1.5 font-caption-mono text-caption-mono text-outline font-normal">
+<span class="text-accent-breeze">PATHO-CLASS:</span>
+<span class="text-white">Foliar Fungal Pathogen</span>
+</div>
+<div class="mt-2 flex items-center gap-2 font-caption-mono text-[11px] text-outline font-normal">
+<span>RANGE: 25-150MM</span>
+<span>•</span>
+<span>VEIN-RESTRICTED</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Pathology Content Sections -->
+<div class="p-5 flex flex-col gap-4 divide-y divide-hairline">
+<div class="flex flex-col gap-1.5 pt-1 first:pt-0">
+<span class="font-caption-mono text-caption-mono text-outline uppercase tracking-wider text-[11px] flex items-center gap-1.5 font-normal">
+<span class="material-symbols-outlined text-[14px]">biotech</span>
+              BIOLOGICAL SYMPTOMS &amp; MORPHOMETRY
+            </span>
+<p class="font-body-sm text-body-sm text-body leading-relaxed font-normal">
+              Elongated, cigar-shaped grayish-green elliptical lesions (25–150 mm long) running parallel along structural parallel leaf venation. Severe coalescence leads to premature thermal desiccation and stalk cannibalization.
+            </p>
+</div>
+<div class="flex flex-col gap-1.5 pt-4">
+<span class="font-caption-mono text-caption-mono text-outline uppercase tracking-wider text-[11px] flex items-center gap-1.5 font-normal">
+<span class="material-symbols-outlined text-[14px]">spa</span>
+              BIO-REMEDIATION &amp; ORGANIC IPM PROTOCOL
+            </span>
+<p class="font-body-sm text-body-sm text-body leading-relaxed font-normal">
+              Strict multi-year rotational cycle with dicot non-hosts. Complete mechanical residue burial via chisel plowing, reinforced with polygenic Ht-resistant seed germplasm to disrupt overwintering chlamydospores.
+            </p>
+</div>
+</div>
+<!-- Card Footer Actions & Live Metrics -->
+<div class="px-5 py-3.5 border-t border-hairline bg-[#0a0a0a] flex items-center justify-between gap-4">
+<div class="flex items-center gap-1.5 font-caption-mono text-caption-mono text-outline font-normal">
+<span class="material-symbols-outlined text-[16px] text-body">insights</span>
+<span>2,150 Telemetry Matches</span>
+</div>
+<button class="px-3.5 py-1.5 rounded-full border border-hairline hover:border-white text-white hover:bg-canvas-soft font-button-md text-button-md transition-colors inline-flex items-center gap-1 font-normal">
+<span>Inspect Clinical Protocol</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+</article>
+</div>
+</section>
+<!-- Database Replication Banner -->
+<section class="w-full border-t border-hairline bg-canvas-soft px-6 py-4">
+<div class="max-w-[1440px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+<div class="flex flex-wrap items-center gap-3 font-caption-mono text-caption-mono text-outline font-normal">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-accent-emerald animate-pulse"></span>
+<span class="tracking-wider uppercase text-white">DATABASE REPLICATION ACTIVE // LOCAL SQLITE &lt;-&gt; SUPABASE POSTGRESQL</span>
+</div>
+<span class="hidden sm:inline text-hairline">|</span>
+<span class="text-body">SYNC TIME: 0.14S AGO</span>
+<span class="hidden sm:inline text-hairline">|</span>
+<span class="text-body">REPLICA ID: #PLANT-SYNC-08992</span>
+</div>
+<div class="flex items-center gap-2 shrink-0">
+<button class="px-3.5 py-1.5 rounded-full bg-canvas-card border border-hairline hover:border-white text-white font-button-md text-button-md transition-all inline-flex items-center gap-1.5 font-normal" id="sync-btn">
+<span class="material-symbols-outlined text-[16px]">sync</span>
+<span>Sync Encyclopedia Data</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+</main><footer class="w-full border-t border-hairline bg-[#0a0a0a]"><div class="w-full px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4"><div class="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left"><span class="font-caption-mono text-caption-mono uppercase tracking-[0.14em] text-outline text-[11px] font-normal">© 2025 PLANTCARE AI // EMPIRICAL PLANT PATHOLOGY AT EDGE SCALE</span><span class="hidden sm:inline font-caption-mono text-hairline text-caption-mono">/</span><div class="inline-flex items-center gap-1 px-2.5 h-5 rounded-full bg-canvas-soft border border-hairline font-caption-mono text-caption-mono text-body text-[10px] uppercase font-normal"><span>ISO/IEC 22989 COMPLIANT</span></div></div><div class="flex items-center gap-6 font-caption-mono text-caption-mono uppercase tracking-[0.12em] text-outline font-normal text-[11px]"><a class="hover:text-white transition-colors" data-path="diagnose" href="#">Inference</a><a class="hover:text-white transition-colors" data-path="disease-library" href="#">38-Class Taxonomy</a><a class="hover:text-white transition-colors" data-path="model-and-benchmarks" href="#">INT8 Quant</a><a class="hover:text-white transition-colors" data-path="admin-telemetry" href="#">Cluster Synapses</a></div></div></footer><script>
+  document.querySelectorAll('.filter-pill').forEach(pill => {
+    pill.addEventListener('click', (e) => {
+      document.querySelectorAll('.filter-pill').forEach(p => {
+        p.classList.remove('bg-white', 'text-black');
+        p.classList.add('bg-transparent', 'border', 'border-hairline', 'text-outline');
+      });
+      pill.classList.remove('bg-transparent', 'border', 'border-hairline', 'text-outline');
+      pill.classList.add('bg-white', 'text-black');
+    });
+  });
+
+  const syncBtn = document.getElementById('sync-btn');
+  if (syncBtn) {
+    syncBtn.addEventListener('click', () => {
+      const icon = syncBtn.querySelector('.material-symbols-outlined');
+      if (icon) icon.classList.add('animate-spin');
+      syncBtn.disabled = true;
+      setTimeout(() => {
+        if (icon) icon.classList.remove('animate-spin');
+        syncBtn.disabled = false;
+      }, 700);
+    });
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      const search = document.getElementById('taxonomy-search');
+      if (search) search.focus();
+    }
+  });
+</script></body></html>
